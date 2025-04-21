@@ -1,0 +1,105 @@
+﻿ @model List<employee.Models.EmployeeFormViewModel>
+@{
+    int sn = 1;
+}
+ <div>
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="mb-0">Employee List</h2>
+    <a href="/Employee/Create" class="btn btn-primary">
+        <i class="fa fa-plus"></i> 
+    </a>
+</div>
+
+    @* <form method="get" action="/Employee/List" class="mb-3"> *@
+    <form id="searchForm" class="mb-3">
+
+        <div class="input-group">
+            <input type="text" id="searchQuery" class="form-control" name="query" placeholder="Search" value="@(ViewContext.HttpContext.Request.Query["query"])" />
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </form>
+
+    <div id="employeeTable">
+        <table class="table table-striped table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>S.N.</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Contact</th>
+                    <th>Department</th>
+                    <th>Experience Years</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            
+                @foreach (var emp in Model)
+                {
+                    <tr>
+                        <td>@sn</td>
+                        <td>@emp.Employee.Name</td>
+                        <td>@emp.Employee.Age</td>
+                        <td>@emp.Employee.Gender</td>
+                        <td>@emp.Employee.Contact</td>
+                        <td>@emp.Experience?.Department</td>
+                        <td>@(emp.Experience?.Years ?? 0)</td>
+
+                        <td>
+                        <a href="/Employee/Create/@emp.Employee.EmployeeID" class="btn btn-sm btn-warning me-2">
+                                <i class="fa fa-edit"></i> Edit
+                        </a>
+
+                        <button class="btn btn-sm btn-danger delete-btn"
+                                data-id="@emp.Employee.EmployeeID">
+                            <i class="fa fa-trash"></i> Delete
+                        </button>
+                        </td>
+                 
+                    </tr>
+                    sn++;
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+          
+            
+            $('.delete-btn').click(function () {
+           
+                var employeeId = $(this).data('id');
+
+                alertify.confirm("Confirm Deletion", "Are you sure you want to delete this employee?",
+                    function () {
+                        $.ajax({
+                            url: '/Employee/Delete/' + employeeId,
+                            type: 'POST',
+                            headers: {
+                                'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val() || ''
+                            },
+                            success: function () {
+                                alertify.success("Employee deleted successfully.");
+                                setTimeout(function () {
+                                    location.reload();
+                                }, 1000);
+                            },
+                            error: function () {
+                                alertify.error("Failed to delete employee.");
+                            }
+                        });
+                    },
+                    function () {
+                        alertify.message('Canceled');
+                    });
+            });
+       
+        
+        });
+    </script>
+}
