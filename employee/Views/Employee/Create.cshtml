@@ -7,6 +7,7 @@
         @Html.AntiForgeryToken()
         <input type="hidden" asp-for="Employee.EmployeeID" />
         <input type="hidden" asp-for="Experience.EmployeeID" />
+        <input type="hidden" asp-for="Experience.ExperienceID" />
 
         <div class="mb-3">
             <h4>Employee Info</h4>
@@ -76,10 +77,8 @@
             $('#submitButton').on('click', function () {
 
                       var form = $('#employeeForm');
-                    if (!form.valid()) 
-                    {
-                     return;
-                    }
+
+                    if (!form.valid())  {  return;  }
 
                 // var form = $('#employeeForm');
                 // var modelData  = form.serialize();
@@ -90,6 +89,7 @@
                         var gender = $('#Employee_Gender').val();
                         var contact = $('#Employee_Contact').val();
 
+                        var experienceid = $('#Experience_ExperienceID').val()
                         var department = $('#Experience_Department').val();
                         var years = $('#Experience_Years').val();
 
@@ -103,6 +103,7 @@
                         Contact: contact
                     },
                     Experience: {
+                        ExperienceID: experienceid,
                         EmployeeID: employeeId,
                         Department: department,
                         Years: years

@@ -43,8 +43,8 @@
                         <td>@emp.Employee.Age</td>
                         <td>@emp.Employee.Gender</td>
                         <td>@emp.Employee.Contact</td>
-                        <td>@emp.Experience?.Department</td>
-                        <td>@(emp.Experience?.Years ?? 0)</td>
+                        <td>@emp.Experience.Department</td>
+                        <td>@(emp.Experience.Years ?? 0)</td>
 
                         <td>
                         <a href="/Employee/Create/@emp.Employee.EmployeeID" class="btn btn-sm btn-warning me-2">

@@ -338,3 +338,4 @@ C:\Users\nihar\Desktop\softech\employee\obj\Debug\net8.0\refint\employee.dll
 C:\Users\nihar\Desktop\softech\employee\obj\Debug\net8.0\employee.pdb
 C:\Users\nihar\Desktop\softech\employee\obj\Debug\net8.0\employee.genruntimeconfig.cache
 C:\Users\nihar\Desktop\softech\employee\obj\Debug\net8.0\ref\employee.dll
+C:\Users\nihar\Desktop\softech\employee\obj\Debug\net8.0\employee.sourcelink.json

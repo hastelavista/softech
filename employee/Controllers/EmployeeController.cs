@@ -41,76 +41,53 @@ namespace employee.Controllers
             return View(model);
         }
 
+
         [HttpPost]
         public IActionResult Create(EmployeeFormViewModel model)
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            if (ModelState.IsValid)
+            if (model.Employee.EmployeeID > 0)
             {
-                if (model.Employee.EmployeeID > 0)
+                _context.Employees.Update(model.Employee);
+
+                //var existingExperience = _context.Experiences.FirstOrDefault(e => e.EmployeeID == model.Employee.EmployeeID);
+
+                if (model.Experience.ExperienceID > 0)
                 {
+                    _context.Experiences.Update(model.Experience);
 
-                    _context.Employees.Update(model.Employee);
-
-                    var existingExperience = _context.Experiences.FirstOrDefault(e => e.EmployeeID == model.Employee.EmployeeID);
-
-                    if (existingExperience != null)
-                    {
-                        existingExperience.Department = model.Experience.Department;
-                        existingExperience.Years = model.Experience.Years;
-
-                        _context.Experiences.Update(existingExperience);
-
-                    }
+                    //existingExperience.Department = model.Experience.Department;
+                    //existingExperience.Years = model.Experience.Years;
+                    //_context.Experiences.Update(existingExperience);
 
                 }
                 else
                 {
-
-                    _context.Employees.Add(model.Employee);
-                    _context.SaveChanges();
-
                     model.Experience.EmployeeID = model.Employee.EmployeeID;
                     _context.Experiences.Add(model.Experience);
                 }
-
-                _context.SaveChanges();
-                return RedirectToAction("List");
             }
             else
+            {
+                _context.Employees.Add(model.Employee);
+                _context.SaveChanges();
 
-                return BadRequest(ModelState);
+                model.Experience.EmployeeID = model.Employee.EmployeeID;
+                _context.Experiences.Add(model.Experience);
+            }
+
+            _context.SaveChanges();
+            return RedirectToAction("List");
+
         }
 
-  
-
-        //[HttpGet]
-        //public IActionResult Create(int? id)
-        //{
-        //    var model = new EmployeeFormViewModel();
-
-        //    if (id.HasValue)
-        //    {
-        //        var employee = _context.Employees.FirstOrDefault(e => e.EmployeeID == id.Value);
-        //        var experience = _context.Experiences.FirstOrDefault(e => e.EmployeeID == id.Value);
-
-        //        if (employee != null)
-        //        {
-        //            model.Employee = employee;
-        //            model.Experience = experience;
-        //        }
-        //    }
-
-        //    return View(model);
-
-        //}
 
         //list and search
         public IActionResult List(string query)
         {
             var employees = _context.Employees
-                .Where(e => string.IsNullOrEmpty(query)
-                            || e.Name.Contains(query))
+                .Where(e => string.IsNullOrEmpty(query)|| e.Name.Contains(query))
                 .ToList();
 
             var result = (from emp in employees
