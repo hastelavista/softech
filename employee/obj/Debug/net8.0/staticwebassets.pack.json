@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\employee.z502e7yc48.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\nihar\\Desktop\\softech\\employee\\wwwroot\\css\\print.css",
+      "PackagePath": "staticwebassets\\css\\print.css"
+    },
+    {
       "Id": "C:\\Users\\nihar\\Desktop\\softech\\employee\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
@@ -303,6 +307,78 @@
     {
       "Id": "C:\\Users\\nihar\\Desktop\\softech\\employee\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\nihar\\Desktop\\softech\\employee\\wwwroot\\lib\\datatables-autofill\\css\\autoFill.bootstrap4.css",
+      "PackagePath": "staticwebassets\\lib\\datatables-autofill\\css\\autoFill.bootstrap4.css"
+    },
+    {
+      "Id": "C:\\Users\\nihar\\Desktop\\softech\\employee\\wwwroot\\lib\\datatables-autofill\\css\\autoFill.bootstrap4.min.css",
+      "PackagePath": "staticwebassets\\lib\\datatables-autofill\\css\\autoFill.bootstrap4.min.css"
+    },
+    {
+      "Id": "C:\\Users\\nihar\\Desktop\\softech\\employee\\wwwroot\\lib\\datatables-autofill\\js\\autoFill.bootstrap4.js",
+      "PackagePath": "staticwebassets\\lib\\datatables-autofill\\js\\autoFill.bootstrap4.js"
+    },
+    {
+      "Id": "C:\\Users\\nihar\\Desktop\\softech\\employee\\wwwroot\\lib\\datatables-autofill\\js\\autoFill.bootstrap4.min.js",
+      "PackagePath": "staticwebassets\\lib\\datatables-autofill\\js\\autoFill.bootstrap4.min.js"
+    },
+    {
+      "Id": "C:\\Users\\nihar\\Desktop\\softech\\employee\\wwwroot\\lib\\datatables-autofill\\js\\dataTables.autoFill.js",
+      "PackagePath": "staticwebassets\\lib\\datatables-autofill\\js\\dataTables.autoFill.js"
+    },
+    {
+      "Id": "C:\\Users\\nihar\\Desktop\\softech\\employee\\wwwroot\\lib\\datatables-autofill\\js\\dataTables.autoFill.min.js",
+      "PackagePath": "staticwebassets\\lib\\datatables-autofill\\js\\dataTables.autoFill.min.js"
+    },
+    {
+      "Id": "C:\\Users\\nihar\\Desktop\\softech\\employee\\wwwroot\\lib\\datatables-bs4\\css\\dataTables.bootstrap4.css",
+      "PackagePath": "staticwebassets\\lib\\datatables-bs4\\css\\dataTables.bootstrap4.css"
+    },
+    {
+      "Id": "C:\\Users\\nihar\\Desktop\\softech\\employee\\wwwroot\\lib\\datatables-bs4\\css\\dataTables.bootstrap4.min.css",
+      "PackagePath": "staticwebassets\\lib\\datatables-bs4\\css\\dataTables.bootstrap4.min.css"
+    },
+    {
+      "Id": "C:\\Users\\nihar\\Desktop\\softech\\employee\\wwwroot\\lib\\datatables-bs4\\js\\dataTables.bootstrap4.js",
+      "PackagePath": "staticwebassets\\lib\\datatables-bs4\\js\\dataTables.bootstrap4.js"
+    },
+    {
+      "Id": "C:\\Users\\nihar\\Desktop\\softech\\employee\\wwwroot\\lib\\datatables-bs4\\js\\dataTables.bootstrap4.min.js",
+      "PackagePath": "staticwebassets\\lib\\datatables-bs4\\js\\dataTables.bootstrap4.min.js"
+    },
+    {
+      "Id": "C:\\Users\\nihar\\Desktop\\softech\\employee\\wwwroot\\lib\\datatables-responsive\\css\\responsive.bootstrap4.css",
+      "PackagePath": "staticwebassets\\lib\\datatables-responsive\\css\\responsive.bootstrap4.css"
+    },
+    {
+      "Id": "C:\\Users\\nihar\\Desktop\\softech\\employee\\wwwroot\\lib\\datatables-responsive\\css\\responsive.bootstrap4.min.css",
+      "PackagePath": "staticwebassets\\lib\\datatables-responsive\\css\\responsive.bootstrap4.min.css"
+    },
+    {
+      "Id": "C:\\Users\\nihar\\Desktop\\softech\\employee\\wwwroot\\lib\\datatables-responsive\\js\\dataTables.responsive.js",
+      "PackagePath": "staticwebassets\\lib\\datatables-responsive\\js\\dataTables.responsive.js"
+    },
+    {
+      "Id": "C:\\Users\\nihar\\Desktop\\softech\\employee\\wwwroot\\lib\\datatables-responsive\\js\\dataTables.responsive.min.js",
+      "PackagePath": "staticwebassets\\lib\\datatables-responsive\\js\\dataTables.responsive.min.js"
+    },
+    {
+      "Id": "C:\\Users\\nihar\\Desktop\\softech\\employee\\wwwroot\\lib\\datatables-responsive\\js\\responsive.bootstrap4.js",
+      "PackagePath": "staticwebassets\\lib\\datatables-responsive\\js\\responsive.bootstrap4.js"
+    },
+    {
+      "Id": "C:\\Users\\nihar\\Desktop\\softech\\employee\\wwwroot\\lib\\datatables-responsive\\js\\responsive.bootstrap4.min.js",
+      "PackagePath": "staticwebassets\\lib\\datatables-responsive\\js\\responsive.bootstrap4.min.js"
+    },
+    {
+      "Id": "C:\\Users\\nihar\\Desktop\\softech\\employee\\wwwroot\\lib\\datatables\\jquery.dataTables.js",
+      "PackagePath": "staticwebassets\\lib\\datatables\\jquery.dataTables.js"
+    },
+    {
+      "Id": "C:\\Users\\nihar\\Desktop\\softech\\employee\\wwwroot\\lib\\datatables\\jquery.dataTables.min.js",
+      "PackagePath": "staticwebassets\\lib\\datatables\\jquery.dataTables.min.js"
     },
     {
       "Id": "C:\\Users\\nihar\\Desktop\\softech\\employee\\wwwroot\\lib\\fontawesome\\LICENSE.txt",
@@ -7159,6 +7235,14 @@
     {
       "Id": "C:\\Users\\nihar\\Desktop\\softech\\employee\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "C:\\Users\\nihar\\Desktop\\softech\\employee\\wwwroot\\lib\\printThis\\printThis.js",
+      "PackagePath": "staticwebassets\\lib\\printThis\\printThis.js"
+    },
+    {
+      "Id": "C:\\Users\\nihar\\Desktop\\softech\\employee\\wwwroot\\lib\\sheetjs\\xlsx.full.min.js",
+      "PackagePath": "staticwebassets\\lib\\sheetjs\\xlsx.full.min.js"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.employee.props",

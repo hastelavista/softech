@@ -51,15 +51,16 @@ namespace employee.Controllers
             {
                 _context.Employees.Update(model.Employee);
 
-                //var existingExperience = _context.Experiences.FirstOrDefault(e => e.EmployeeID == model.Employee.EmployeeID);
+                var existingExperience = _context.Experiences.FirstOrDefault(e => e.EmployeeID == model.Employee.EmployeeID);
 
-                if (model.Experience.ExperienceID > 0)
+                //if (model.Experience.ExperienceID > 0)
+                if (existingExperience != null)
                 {
-                    _context.Experiences.Update(model.Experience);
+                    //_context.Experiences.Update(model.Experience);
 
-                    //existingExperience.Department = model.Experience.Department;
-                    //existingExperience.Years = model.Experience.Years;
-                    //_context.Experiences.Update(existingExperience);
+                    existingExperience.Department = model.Experience.Department;
+                    existingExperience.Years = model.Experience.Years;
+                    _context.Experiences.Update(existingExperience);
 
                 }
                 else

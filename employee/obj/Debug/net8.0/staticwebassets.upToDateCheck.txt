@@ -1,3 +1,4 @@
+wwwroot\css\print.css
 wwwroot\css\site.css
 wwwroot\favicon.ico
 wwwroot\js\site.js
@@ -73,6 +74,24 @@ wwwroot\lib\bootstrap\dist\js\bootstrap.js.map
 wwwroot\lib\bootstrap\dist\js\bootstrap.min.js
 wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map
 wwwroot\lib\bootstrap\LICENSE
+wwwroot\lib\datatables\jquery.dataTables.js
+wwwroot\lib\datatables\jquery.dataTables.min.js
+wwwroot\lib\datatables-autofill\css\autoFill.bootstrap4.css
+wwwroot\lib\datatables-autofill\css\autoFill.bootstrap4.min.css
+wwwroot\lib\datatables-autofill\js\autoFill.bootstrap4.js
+wwwroot\lib\datatables-autofill\js\autoFill.bootstrap4.min.js
+wwwroot\lib\datatables-autofill\js\dataTables.autoFill.js
+wwwroot\lib\datatables-autofill\js\dataTables.autoFill.min.js
+wwwroot\lib\datatables-bs4\css\dataTables.bootstrap4.css
+wwwroot\lib\datatables-bs4\css\dataTables.bootstrap4.min.css
+wwwroot\lib\datatables-bs4\js\dataTables.bootstrap4.js
+wwwroot\lib\datatables-bs4\js\dataTables.bootstrap4.min.js
+wwwroot\lib\datatables-responsive\css\responsive.bootstrap4.css
+wwwroot\lib\datatables-responsive\css\responsive.bootstrap4.min.css
+wwwroot\lib\datatables-responsive\js\dataTables.responsive.js
+wwwroot\lib\datatables-responsive\js\dataTables.responsive.min.js
+wwwroot\lib\datatables-responsive\js\responsive.bootstrap4.js
+wwwroot\lib\datatables-responsive\js\responsive.bootstrap4.min.js
 wwwroot\lib\fontawesome\attribution.js
 wwwroot\lib\fontawesome\css\all.css
 wwwroot\lib\fontawesome\css\all.min.css
@@ -1787,3 +1806,5 @@ wwwroot\lib\jquery-validation\LICENSE.md
 wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js
 wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js
 wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt
+wwwroot\lib\printThis\printThis.js
+wwwroot\lib\sheetjs\xlsx.full.min.js

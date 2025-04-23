@@ -7,7 +7,7 @@
         @Html.AntiForgeryToken()
         <input type="hidden" asp-for="Employee.EmployeeID" />
         <input type="hidden" asp-for="Experience.EmployeeID" />
-        <input type="hidden" asp-for="Experience.ExperienceID" />
+        @* <input type="hidden" asp-for="Experience.ExperienceID" /> *@
 
         <div class="mb-3">
             <h4>Employee Info</h4>

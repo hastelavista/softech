@@ -1,0 +1,228 @@
+﻿.page {
+    width: 21cm;
+    min-height: 29.7cm;
+    padding: 2cm;
+    margin: 1cm auto;
+    border: 1px #D3D3D3 solid;
+    border-radius: 5px;
+    background: white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    font-size: 1rem;
+}
+
+.subpage {
+    padding: 1cm;
+    height: 256mm;
+}
+
+.fg-box {
+    height: 140px;
+    border: 1px solid #000;
+}
+
+dt {
+    font-weight:normal;
+    margin-top: 10px;
+}
+
+dd {
+    padding-left: 15px;
+}
+
+.rpt-table {
+    width: 100%;
+}
+
+.rpt-table th, .rpt-table td {
+    border: 1px solid;
+    border-collapse: collapse;
+}
+
+.photo {
+    width: 110px;
+    right: 20px;
+    top: 40px;
+    margin-top:10px;
+}
+
+@page {
+    size: A4;
+    margin: 10px 50px 0;
+}
+
+@media print {
+    .page {
+        page-break-after: always;
+        font-size: 2rem !important;
+    }
+    
+    p {
+        margin-bottom: 0.3rem;
+    }
+
+    .row, dl {
+        font-family: Kalimati;
+    }
+
+    .row.english-font {
+        font-family: 'Times New Roman'
+    }
+
+    .p-relative {
+        position: relative;
+    }
+
+    .row-p-flex {
+        display: flex;
+        flex-wrap: wrap;
+        margin-right: -10px !important;
+        margin-left: -10px !important;
+    }
+
+    .finger-print {
+        margin-left: 40%;
+        width: 50%;
+    }
+
+    .finger-print .row {
+        display:flex;
+    }
+
+    .finger-print .col-6 {
+        width: 45%;
+        margin-right:10px;
+    }
+
+    .mt-5 {
+        margin-top: 3rem !important;
+    }
+
+    .text-justify {
+        text-align: justify !important;
+        line-height: 30px;
+    }
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .table-bordered td, .table-bordered th {
+        border: 1px solid #000;
+        border-collapse: collapse;
+    }
+
+    .col, .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col-auto, .col-lg, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-auto, .col-md, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md-auto, .col-sm, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-auto {
+        padding-right: 0px;
+        padding-left: 0px;
+    }
+
+    .col-12, .col-md-12 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .col-9, .col-md-9 {
+        flex: 0 0 75%;
+        max-width: 75%;
+    }
+
+    .col-8, .col-md-8 {
+        flex: 0 0 66.66666667%;
+        max-width: 66.66666667%;
+    }
+
+    .col-6, .col-md-6 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+
+    .col-4, .col-md-4 {
+        flex: 0 0 33.33333%;
+        max-width: 33.33333%;
+    }
+
+    .col-3, .col-md-3 {
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
+
+    .col-2, .col-md-2 {
+        flex: 0 0 16.66666667%;
+        max-width: 16.66666667%;
+    }
+
+    .row-p-flex .col-6 {
+        flex: 0 0 50%;
+        max-width: 40%;
+        line-height: 0;
+    }
+
+    .text-left {
+        text-align: left !important;
+    }
+
+    .text-right {
+        text-align: right !important;
+    }
+
+    .text-center {
+        text-align: center !important;
+    }
+
+    .letter-address {
+        margin: 200px 50px 0;
+    }
+
+    .table-bordered {
+        border: 1px solid #000;
+    }
+
+    .subject {
+        text-align: center;
+        font-size: 18px;
+    }
+
+    .no-padding-print {
+        padding: 0;
+    }
+
+    .d-flex {
+        display: flex;
+    }
+
+    .no-border {
+        border: none !important;
+    }
+}
+
+.watermark-logo {
+    position: absolute;
+    width: 600px !important;
+    height: 550px !important;
+    margin-left: 1.5cm;
+    margin-top: 6cm;
+    opacity: 0.1;
+}
+
+@media print {
+    #secondPrint {
+        margin-top: 60px;
+        page-break-before: always;
+    }
+}
+
+.fingerPrintcolumn {
+    float: left;
+    width: 20%;
+    padding: 10px;
+    height: 100px;
+    border: 1px solid /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.fingerPrint:after {
+    content: "";
+    display: table;
+    clear: both;
+}

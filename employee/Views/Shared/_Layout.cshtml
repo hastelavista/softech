@@ -10,11 +10,12 @@
 
     <link href="~/lib/fontawesome/css/all.css" rel="stylesheet" />
     <link href="~/lib/fontawesome/css/all.min.css" rel="stylesheet" />
+	<link href="~/lib/datatables-responsive/css/responsive.bootstrap4.css" rel="stylesheet" />
+	<link href="~/lib/datatables-responsive/css/responsive.bootstrap4.min.css" rel="stylesheet" />
 
 	<link href="~/lib/alertifyjs/css/alertify.css" rel="stylesheet" />
 	<link href="~/lib/alertifyjs/css/alertify.min.css" rel="stylesheet" />
-
-
+	<link href="~/css/print.css" rel="stylesheet" />
 	@* <link href="~/lib/alertifyjs/css/themes/default.css" rel="stylesheet" /> *@
 	<link href="~/lib/alertifyjs/css/themes/default.min.css" rel="stylesheet" />
 
@@ -59,12 +60,17 @@
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="~/lib/datatables/jquery.datatables.js"></script>
+	<script src="~/lib/datatables/jquery.datatables.min.js"></script>
+	<script src="~/lib/sheetjs/xlsx.full.min.js"></script>
+
+
 
 	<script src="~/lib/alertifyjs/alertify.js"></script>
 	<script src="~/lib/alertifyjs/alertify.min.js"></script>
-
-
-
+	<script src="~/lib/printthis/printthis.js"></script>
+	<script src="~/lib/datatables-responsive/js/datatables.responsive.min.js"></script>
+	<script src="~/lib/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

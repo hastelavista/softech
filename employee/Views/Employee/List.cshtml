@@ -1,13 +1,30 @@
 ﻿ @model List<employee.Models.EmployeeFormViewModel>
+
+
+
 @{
     int sn = 1;
 }
  <div>
 <div class="d-flex justify-content-between align-items-center mb-3">
-    <h2 class="mb-0">Employee List</h2>
-    <a href="/Employee/Create" class="btn btn-primary">
-        <i class="fa fa-plus"></i> 
-    </a>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2 class="mb-0">Employee List</h2>
+        </div>
+            <div>
+
+            <a href="#" class="btn btn-outline-success me-2 btnExcel" title="Export to Excel">
+                <i class="fa fa-file-excel"></i>
+            </a>
+                
+                <a href="#" class="btn btn-outline-secondary me-2 btnPrint" title="Print Table">
+                    <i class="fa fa-print"></i>
+                </a>
+                <a href="/Employee/Create" class="btn btn-primary">
+                    <i class="fa fa-plus"></i>
+                </a>
+            </div>
+       
+
 </div>
 
     @* <form method="get" action="/Employee/List" class="mb-3"> *@
@@ -20,43 +37,50 @@
     </form>
 
     <div id="employeeTable">
-        <table class="table table-striped table-bordered">
-            <thead class="table-dark">
+        <table class="table table-striped table-bordered table-hover align-middle">
+            <thead class="table-dark text-nowrap">
                 <tr>
-                    <th>S.N.</th>
-                    <th>Name</th>
-                    <th>Age</th>
-                    <th>Gender</th>
-                    <th>Contact</th>
-                    <th>Department</th>
-                    <th>Experience Years</th>
-                    <th></th>
+                    <th style="width: 50px;">S.N.</th>
+                    <th style="width: 200px;">Name</th>
+                    <th style="width: 80px;">Age</th>
+                    <th style="width: 100px;">Gender</th>
+                    <th style="width: 160px;">Contact</th>
+                    <th style="width: 180px;">Department</th>
+                    <th style="width: 120px;">Experience Years</th>
+                    <th style="width: 100px;"></th>
                 </tr>
             </thead>
-            <tbody>
-            
+            <tbody class="text-nowrap">
                 @foreach (var emp in Model)
                 {
                     <tr>
                         <td>@sn</td>
-                        <td>@emp.Employee.Name</td>
+                        <td>
+                            <div class="text-truncate" style="max-width: 140px;" title="@emp.Employee.Name">
+                                @emp.Employee.Name
+                            </div>
+                        </td>
                         <td>@emp.Employee.Age</td>
                         <td>@emp.Employee.Gender</td>
-                        <td>@emp.Employee.Contact</td>
-                        <td>@emp.Experience.Department</td>
-                        <td>@(emp.Experience.Years ?? 0)</td>
-
                         <td>
-                        <a href="/Employee/Create/@emp.Employee.EmployeeID" class="btn btn-sm btn-warning me-2">
-                                <i class="fa fa-edit"></i> Edit
-                        </a>
-
-                        <button class="btn btn-sm btn-danger delete-btn"
-                                data-id="@emp.Employee.EmployeeID">
-                            <i class="fa fa-trash"></i> Delete
-                        </button>
+                            <div class="text-truncate" style="max-width: 150px;" title="@emp.Employee.Contact">
+                                @emp.Employee.Contact
+                            </div>
                         </td>
-                 
+                        <td>
+                            <div class="text-truncate" style="max-width: 170px;" title="@emp.Experience.Department">
+                                @emp.Experience.Department
+                            </div>
+                        </td>
+                        <td>@(emp.Experience.Years ?? 0)</td>
+                        <td>
+                            <a href="/Employee/Create/@emp.Employee.EmployeeID" class="btn btn-sm btn-warning me-2">
+                                <i class="fa fa-edit"></i> 
+                            </a>
+                            <button class="btn btn-sm btn-danger delete-btn" data-id="@emp.Employee.EmployeeID">
+                                <i class="fa fa-trash"></i> 
+                            </button>
+                        </td>
                     </tr>
                     sn++;
                 }
@@ -69,6 +93,16 @@
 @section Scripts {
     <script>
         $(document).ready(function () {
+
+            var dt = $ (".table").DataTable({
+                "paging": false,
+                "lengthchange": true,
+                "searching": false,
+                "aaSorting": [],
+                "info" : false,
+                "autoWidth" : false,
+                "responsive": false,
+            });
           
             
             $('.delete-btn').click(function () {
@@ -98,7 +132,53 @@
                         alertify.message('Canceled');
                     });
             });
-       
+
+
+            $('.btnPrint').off('click').on('click', function (e) {
+            e.preventDefault();
+
+                $('.table').printThis({
+                    debug: false,
+                    importCSS: false,
+                    importStyle: true,
+                    printContainer: true,
+                    loadCSS: "/css/print.css",
+                    pageTitle: "",
+                    removeInline: false,
+                    formValues: true,
+                    beforePrint: function () {
+                        dt.columns($('thead tr th').length - 1).visible(false);
+                    },
+                    afterPrint: function () {
+                        dt.columns($('thead tr th').length).visible(true);
+                    }
+                });
+
+            });
+
+            // $('.btnExcel').off('click').on('click', function (e) {
+            //     e.preventDefault();
+
+            //     let table = document.querySelector(".table");
+            //     let wb = XLSX.utils.table_to_book(table, { sheet: "Employees" });
+            //     XLSX.writeFile(wb, "Employee_List.xlsx");
+            // });
+                    $('.btnExcel').off('click').on('click', function (e) {
+            e.preventDefault();
+
+            alertify.confirm('Download Excel', 'Do you want to download the Employee List as an Excel file?',
+                function () {
+                    // If the user clicks "OK"
+                    let table = document.querySelector(".table");
+                    let wb = XLSX.utils.table_to_book(table, { sheet: "Employees" });
+                    XLSX.writeFile(wb, "Employee_List.xlsx");
+                },
+                function () {
+                    // If the user clicks "Cancel"
+                    alertify.message('Download canceled.');
+                }
+            );
+        });
         
         });
     </script>
