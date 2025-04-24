@@ -1,8 +1,8 @@
 ﻿using employee.Data;
 using employee.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-
+using X.PagedList;
+using X.PagedList.Extensions;
 
 namespace employee.Controllers
 {
@@ -85,21 +85,33 @@ namespace employee.Controllers
 
 
         //list and search
-        public IActionResult List(string query)
+        public IActionResult List(string query, int page = 1, int pageSize = 25)
         {
-            var employees = _context.Employees
-                .Where(e => string.IsNullOrEmpty(query)|| e.Name.Contains(query))
+            //var employees = _context.Employees
+            //    .Where(e => string.IsNullOrEmpty(query)|| e.Name.Contains(query))
+            //    .ToList();
+
+            var employeesQuery = _context.Employees
+             .Where(e => string.IsNullOrEmpty(query) || e.Name.Contains(query))
+             .OrderBy(e => e.EmployeeID);
+
+            var pagedEmployees = employeesQuery.ToPagedList(page, pageSize);
+            var employeeIds = pagedEmployees.Select(e => e.EmployeeID).ToList();
+            var experiences = _context.Experiences
+                .Where(exp => employeeIds.Contains(exp.EmployeeID))
                 .ToList();
 
-            var result = (from emp in employees
-                          join exp in _context.Experiences
-                          on emp.EmployeeID equals exp.EmployeeID into joined
-                          from exp in joined.DefaultIfEmpty()
-                          select new EmployeeFormViewModel
-                          {
-                              Employee = emp,
-                              Experience = exp
-                          }).ToList();
+
+            var result = pagedEmployees.Select(emp => new EmployeeFormViewModel
+            {
+                Employee = emp,
+                Experience = experiences.FirstOrDefault(e => e.EmployeeID == emp.EmployeeID)
+            }).ToList();
+
+            ViewBag.Query = query;
+            ViewBag.Page = page;
+            ViewBag.PageSize = pageSize;
+            ViewBag.PagedEmployees = pagedEmployees;
 
             return View(result);
         }
