@@ -85,7 +85,7 @@ namespace employee.Controllers
 
 
         //list and search
-        public IActionResult List(string query, int page = 1, int pageSize = 25)
+        public IActionResult List(string query, int page = 1, int pageSize = 50)
         {
             //var employees = _context.Employees
             //    .Where(e => string.IsNullOrEmpty(query)|| e.Name.Contains(query))
@@ -120,7 +120,9 @@ namespace employee.Controllers
         [HttpPost]
         public IActionResult Delete(int id)
         {
-            var employee = _context.Employees.FirstOrDefault(e => e.EmployeeID == id);
+            var employee = _context.Employees.Find(id);
+            if (employee == null) return NotFound();
+
             var experience = _context.Experiences.FirstOrDefault(e => e.EmployeeID == id);
 
             if (employee != null)

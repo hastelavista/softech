@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\nihar\\Desktop\\softech\\employee\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A9012B92-8ED4-4898-8B3D-CE0FA8BD01D2}|employee.csproj|c:\\users\\nihar\\desktop\\softech\\employee\\views\\employee\\list.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{A9012B92-8ED4-4898-8B3D-CE0FA8BD01D2}|employee.csproj|solutionrelative:views\\employee\\list.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{A9012B92-8ED4-4898-8B3D-CE0FA8BD01D2}|employee.csproj|c:\\users\\nihar\\desktop\\softech\\employee\\models\\experience.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A9012B92-8ED4-4898-8B3D-CE0FA8BD01D2}|employee.csproj|solutionrelative:models\\experience.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A9012B92-8ED4-4898-8B3D-CE0FA8BD01D2}|employee.csproj|c:\\users\\nihar\\desktop\\softech\\employee\\controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A9012B92-8ED4-4898-8B3D-CE0FA8BD01D2}|employee.csproj|solutionrelative:controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A9012B92-8ED4-4898-8B3D-CE0FA8BD01D2}|employee.csproj|c:\\users\\nihar\\desktop\\softech\\employee\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{A9012B92-8ED4-4898-8B3D-CE0FA8BD01D2}|employee.csproj|solutionrelative:wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+      "AbsoluteMoniker": "D:0:0:{A9012B92-8ED4-4898-8B3D-CE0FA8BD01D2}|employee.csproj|c:\\users\\nihar\\desktop\\softech\\employee\\views\\employee\\list.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A9012B92-8ED4-4898-8B3D-CE0FA8BD01D2}|employee.csproj|solutionrelative:views\\employee\\list.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A9012B92-8ED4-4898-8B3D-CE0FA8BD01D2}|employee.csproj|c:\\users\\nihar\\desktop\\softech\\employee\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{A9012B92-8ED4-4898-8B3D-CE0FA8BD01D2}|employee.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{A9012B92-8ED4-4898-8B3D-CE0FA8BD01D2}|employee.csproj|c:\\users\\nihar\\desktop\\softech\\employee\\employee.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{A9012B92-8ED4-4898-8B3D-CE0FA8BD01D2}|employee.csproj|solutionrelative:employee.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,45 +26,32 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "C:\\Users\\nihar\\Desktop\\softech\\employee\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "C:\\Users\\nihar\\Desktop\\softech\\employee\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAACwAAAAAAAAAAAAuwE0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-23T10:37:57.024Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "site.css",
-              "DocumentMoniker": "C:\\Users\\nihar\\Desktop\\softech\\employee\\wwwroot\\css\\site.css",
-              "RelativeDocumentMoniker": "wwwroot\\css\\site.css",
-              "ToolTip": "C:\\Users\\nihar\\Desktop\\softech\\employee\\wwwroot\\css\\site.css",
-              "RelativeToolTip": "wwwroot\\css\\site.css",
-              "ViewState": "AgIAABgAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-04-23T09:52:14.975Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "List.cshtml",
-              "DocumentMoniker": "C:\\Users\\nihar\\Desktop\\softech\\employee\\Views\\Employee\\List.cshtml",
-              "RelativeDocumentMoniker": "Views\\Employee\\List.cshtml",
-              "ToolTip": "C:\\Users\\nihar\\Desktop\\softech\\employee\\Views\\Employee\\List.cshtml",
-              "RelativeToolTip": "Views\\Employee\\List.cshtml",
-              "ViewState": "AgIAAL0AAAAAAAAAAAAAAMwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-23T05:09:48.444Z",
+              "Title": "Experience.cs",
+              "DocumentMoniker": "C:\\Users\\nihar\\Desktop\\softech\\employee\\Models\\Experience.cs",
+              "RelativeDocumentMoniker": "Models\\Experience.cs",
+              "ToolTip": "C:\\Users\\nihar\\Desktop\\softech\\employee\\Models\\Experience.cs",
+              "RelativeToolTip": "Models\\Experience.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAcAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-24T10:12:30.987Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "employee",
+              "DocumentMoniker": "C:\\Users\\nihar\\Desktop\\softech\\employee\\employee.csproj",
+              "RelativeDocumentMoniker": "employee.csproj",
+              "ToolTip": "C:\\Users\\nihar\\Desktop\\softech\\employee\\employee.csproj",
+              "RelativeToolTip": "employee.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-04-24T09:56:43.047Z",
               "EditorCaption": ""
             },
             {
@@ -75,9 +62,22 @@
               "RelativeDocumentMoniker": "Controllers\\EmployeeController.cs",
               "ToolTip": "C:\\Users\\nihar\\Desktop\\softech\\employee\\Controllers\\EmployeeController.cs",
               "RelativeToolTip": "Controllers\\EmployeeController.cs",
-              "ViewState": "AgIAAFkAAAAAAAAAAAAkwHQAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAwBIAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T09:00:00.559Z",
+              "WhenOpened": "2025-04-24T07:04:50.082Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "List.cshtml",
+              "DocumentMoniker": "C:\\Users\\nihar\\Desktop\\softech\\employee\\Views\\Employee\\List.cshtml",
+              "RelativeDocumentMoniker": "Views\\Employee\\List.cshtml",
+              "ToolTip": "C:\\Users\\nihar\\Desktop\\softech\\employee\\Views\\Employee\\List.cshtml",
+              "RelativeToolTip": "Views\\Employee\\List.cshtml",
+              "ViewState": "AgIAAGIAAAAAAAAAAAAowHUAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-24T06:09:11.591Z",
               "EditorCaption": ""
             }
           ]

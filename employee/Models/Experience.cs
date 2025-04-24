@@ -9,7 +9,6 @@ namespace employee.Models
         [Key]
         public int ExperienceID { get; set; }
 
-      
         public int EmployeeID { get; set; }
 
         [Required(ErrorMessage = "Select Department")]
