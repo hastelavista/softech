@@ -11,8 +11,12 @@ namespace employee.Models
 
         public int EmployeeID { get; set; }
 
+        [Required(ErrorMessage = "Select Company")]
+        public string Company { get; set; }
+
         [Required(ErrorMessage = "Select Department")]
         public string Department { get; set; }
+
 
         [ForeignKey(nameof(EmployeeID))]
         [ValidateNever]

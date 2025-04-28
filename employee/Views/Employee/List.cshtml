@@ -1,65 +1,55 @@
-﻿    @model List<employee.Models.EmployeeFormViewModel>
-    @using X.PagedList.Mvc.Core
-    @using X.PagedList
+﻿@model IPagedList<employee.Models.EmployeeFormViewModel>
+@using X.PagedList.Mvc.Core
+@using X.PagedList
 
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="mb-0">Employee List</h2>
 
-
-<div class ="container">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-          
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h2 class="mb-0">Employee List</h2>
+        <div class="d-flex justify-content-between align-items-center flex-wrap">
+            <form id="searchForm" class="d-flex align-items-center me-3 mb-2 mb-md-0" method="get" action="/Employee/List">
+                <div class="input-group">
+                    <input type="text" id="searchQuery" class="form-control" name="query" placeholder="Search" value="@(ViewContext.HttpContext.Request.Query["query"])" />
+                    <button type="submit" class="btn btn-primary">Search</button>
                 </div>
+            </form>
 
-                <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap">
-
-                    <form id="searchForm" class="d-flex align-items-center me-3 mb-2 mb-md-0" method="get" action="/Employee/List">
-                        <div class="input-group">
-                            <input type="text" id="searchQuery" class="form-control" name="query" placeholder="Search" value="@(ViewContext.HttpContext.Request.Query["query"])" />
-                            <button type="submit" class="btn btn-primary">Search</button>
-                        </div>
-                    </form>
-
-                    <div class="d-flex align-items-center">
-                        <a href="#" class="btn btn-outline-success me-2 btnExcel" title="Export to Excel">
-                            <i class="fa fa-file-excel fa-sm"></i>
-                        </a>
-
-                        <a href="#" class="btn btn-outline-secondary me-2 btnPrint" title="Print Table">
-                            <i class="fa fa-print fa-sm"></i>
-                        </a>
-
-                        <a href="/Employee/Create" class="btn btn-primary">
-                            <i class="fa fa-plus fa-sm"></i>
-                        </a>
-                    </div>
-                </div>
-
+            <div class="d-flex align-items-center">
+                <a href="#" class="btn btn-outline-success me-2 btnExcel" title="Export to Excel">
+                    <i class="fa fa-file-excel fa-sm"></i>
+                </a>
+                <a href="#" class="btn btn-outline-secondary me-2 btnPrint" title="Print Table">
+                    <i class="fa fa-print fa-sm"></i>
+                </a>
+                <a href="/Employee/Create" class="btn btn-primary">
+                    <i class="fa fa-plus fa-sm"></i>
+                </a>
+            </div>
         </div>
-
+    </div>
 
     <div class="table-responsive w-100 px-0 mx-0" id="employeeTable">
         <div style="max-height: 500px; overflow-y: auto;">
-            <table class="table table-sm table-striped table-bordered table-hover align-middle table-sm">
-                <thead class="table-dark text-nowrap" style="position: sticky; top: 0; z-index: 2; background-color: #343a40;">
+            <table class="table table-sm table-striped table-bordered table-hover align-middle">
+                <thead class="table-dark text-nowrap" style="position: sticky; top: 0; z-index: 2;">
                     <tr>
                         <th style="width: 50px;">S.N.</th>
                         <th style="width: 200px;">Name</th>
                         <th style="width: 80px;">Age</th>
                         <th style="width: 100px;">Gender</th>
                         <th style="width: 160px;">Contact</th>
-                        <th style="width: 180px;">Department</th>
                         <th style="width: 120px;">Experience Years</th>
                         <th style="width: 100px;"></th>
                     </tr>
                 </thead>
                 <tbody class="text-nowrap">
                     @{
-                        int sn = ((ViewBag.PagedEmployees.PageNumber - 1) * ViewBag.PagedEmployees.PageSize) + 1;
+                        int sn = ((Model.PageNumber - 1) * Model.PageSize) + 1;
                     }
 
                     @foreach (var emp in Model)
                     {
+                        var totalYears = emp.Experiences?.Sum(e => e.Years) ?? 0;
                         <tr>
                             <td>@sn</td>
                             <td>
@@ -74,12 +64,8 @@
                                     @emp.Employee.Contact
                                 </div>
                             </td>
-                            <td>
-                                <div class="text-truncate" style="max-width: 170px;" title="@emp.Experience.Department">
-                                    @emp.Experience.Department
-                                </div>
-                            </td>
-                            <td>@(emp.Experience.Years ?? 0)</td>
+
+                            <td>@totalYears</td>
                             <td>
                                 <a href="/Employee/Create/@emp.Employee.EmployeeID" class="btn btn-sm btn-warning me-2">
                                     <i class="fa fa-edit"></i>
@@ -96,28 +82,25 @@
         </div>
     </div>
 
-
-                @Html.PagedListPager(
-                         (IPagedList)ViewBag.PagedEmployees,
-                         page => Url.Action("List", new { page, query = ViewBag.Query }),
-                         new PagedListRenderOptions
-                    {
-                        DisplayLinkToFirstPage = PagedListDisplayMode.Always,
-                        DisplayLinkToLastPage = PagedListDisplayMode.Always,
-                        DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
-                        DisplayLinkToNextPage = PagedListDisplayMode.Always,
-                        DisplayEllipsesWhenNotShowingAllPageNumbers = true,
-                        MaximumPageNumbersToDisplay = 5,
-                        ContainerDivClasses = new[] { "pagination", "justify-content-center", "mt-3" },
-                UlElementClasses = new[] { "pagination", "pagination-sm" },
-                        PageClasses = new[] { "page-link" }
-                    }
-                     )
-            
-
-        </div>
-
+    <div class="d-flex justify-content-center mt-3">
+        @Html.PagedListPager(Model, page => Url.Action("List", new { page, query = ViewContext.HttpContext.Request.Query["query"] }),
+                 new PagedListRenderOptions
+        {
+            Display = PagedListDisplayMode.IfNeeded,
+            DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+            DisplayLinkToLastPage = PagedListDisplayMode.Always,
+            DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+            DisplayLinkToNextPage = PagedListDisplayMode.Always,
+            DisplayPageCountAndCurrentLocation = false,
+            DisplayItemSliceAndTotal = false,
+            MaximumPageNumbersToDisplay = 5,
+            UlElementClasses = new[] { "pagination" },
+            LiElementClasses = new[] { "page-item" },
+            PageClasses = new[] { "page-link" }
+        })
     </div>
+</div>
+
 
 @section Scripts {
     <script>

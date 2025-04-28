@@ -5,6 +5,6 @@ namespace employee.Models
     public class EmployeeFormViewModel
     {
         public Employee Employee { get; set; } = new Employee();
-        public Experience Experience { get; set; } = new Experience();
+        public List<Experience> Experiences { get; set; } = new List<Experience>();
     }
 }

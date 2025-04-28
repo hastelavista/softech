@@ -3,12 +3,12 @@
 <div class="container mt-5">
     <h2 class="mb-4">Employee Registration Form</h2>
 
-    <form id="employeeForm" method="post" @* class="needs-validation" novalidate *@>
+    <form id="employeeForm" method="post">
         @Html.AntiForgeryToken()
-        <input type="hidden" asp-for="Employee.EmployeeID" />
-        <input type="hidden" asp-for="Experience.EmployeeID" />
-        @* <input type="hidden" asp-for="Experience.ExperienceID" /> *@
 
+        <input type="hidden" asp-for="Employee.EmployeeID" />
+
+        <!-- Employee Info -->
         <div class="mb-3">
             <h4>Employee Info</h4>
 
@@ -21,7 +21,7 @@
             <div class="form-group mb-2">
                 <label asp-for="Employee.Age"></label>
                 <input asp-for="Employee.Age" class="form-control" />
-                <span asp-validation-for="Employee.Age" class="text-danger">  </span>
+                <span asp-validation-for="Employee.Age" class="text-danger"></span>
             </div>
 
             <div class="form-group mb-2">
@@ -42,109 +42,210 @@
             </div>
         </div>
 
+        <!-- Experience Info -->
         <div class="mb-3">
             <h4>Experience Info</h4>
+            <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#experienceModal">+ Add Experience</button>
 
-            <div class="form-group mb-2">
-                <label asp-for="Experience.Department"></label>
-                <select asp-for="Experience.Department" class="form-control">
-                    <option value="">-- Select Department --</option>
-                    <option value="IT">IT</option>
-                    <option value="DevOps">DevOps</option>
-                    <option value="Sales">Sales</option>
-                    <option value="Management">Management</option>
-                </select>                
-                <span asp-validation-for="Experience.Department" class="text-danger"></span>
+            <table class="table mt-3" id="experienceTable">
+                <thead>
+                    <tr>
+                        <th>Company</th>
+                        <th>Department</th>
+                        <th>Years of Experience</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="experienceDetails">
+                  
+                </tbody>
+            </table>
+
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+<!-- Experience Modal -->
+<div class="modal fade" id="experienceModal" tabindex="-1" aria-labelledby="experienceModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="experienceModalLabel">Add Experience</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <div class="modal-body">
+                <div class="form-group mb-2">
+                    <label for="experienceCompany">Company</label>
+                    <select class="form-control" id="experienceCompany">
+                        <option value="CompanyA">Company A</option>
+                        <option value="CompanyB">Company B</option>
+                        <option value="CompanyC">Company C</option>
+                    </select>
+                </div>
 
-            <div class="form-group mb-2">
-                <label asp-for="Experience.Years"></label>
-                <input asp-for="Experience.Years" class="form-control" />
-                <span asp-validation-for="Experience.Years" class="text-danger"></span>
+                <div class="form-group mb-2">
+                    <label for="experienceDepartment">Department</label>
+                    <select class="form-control" id="experienceDepartment">
+                        <option value="IT">IT</option>
+                        <option value="DevOps">DevOps</option>
+                        <option value="Sales">Sales</option>
+                        <option value="Management">Management</option>
+                    </select>
+                </div>
+
+                <div class="form-group mb-2">
+                    <label for="experienceYears">Years</label>
+                    <input type="number" class="form-control" id="experienceYears" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="saveExperienceBtn">Save Experience</button>
             </div>
         </div>
-    </form>
-
-    <button type="button" id="submitButton" class="btn btn-primary">Submit</button>
+    </div>
 </div>
 
 @section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-
     <script>
-
         $(document).ready(function () {
-            $('#submitButton').on('click', function () {
+            let editingRow = null;
+            let experienceCounter = 0;
+            let deletedExperiences = [];
 
-                      var form = $('#employeeForm');
+            // Populate existing experiences
+            const existingExperiences = @Html.Raw(Json.Serialize(Model.Experiences));
+            if (existingExperiences && existingExperiences.length > 0) {
+                $.each(existingExperiences, function(index, experience) {
+                    const newRow = $('<tr>').attr('data-id', experience.experienceID)
+                        .append($('<td>').text(experience.company))
+                        .append($('<td>').text(experience.department))
+                        .append($('<td>').text(experience.years))
+                        .append($('<td>')
+                            .append($('<button>').attr({
+                                'type': 'button',
+                                'class': 'btn btn-sm btn-warning me-1 editExperienceBtn'
+                            }).html('<i class="fas fa-edit"></i>'))
+                            .append($('<button>').attr({
+                                'type': 'button',
+                                'class': 'btn btn-sm btn-danger removeExperienceBtn'
+                            }).html('<i class="fas fa-trash-alt"></i>'))
+                        );
+                    $("#experienceDetails").append(newRow);
+                });
+            }
 
-                    if (!form.valid())  {  return;  }
+            // Save experience handler
+            $("#saveExperienceBtn").on('click', function () {
+                const company = $("#experienceCompany").val();
+                const department = $("#experienceDepartment").val();
+                const years = $("#experienceYears").val();
+                const experienceId = editingRow ? $(editingRow).data("id") : null;
 
-                // var form = $('#employeeForm');
-                // var modelData  = form.serialize();
+                if (editingRow) {
+                    $(editingRow).find("td:eq(0)").text(company);
+                    $(editingRow).find("td:eq(1)").text(department);
+                    $(editingRow).find("td:eq(2)").text(years);
+                    editingRow = null;
+                } else {
+                    const newRow = $('<tr>').attr('data-id', 'new_' + experienceCounter++)
+                        .append($('<td>').text(company))
+                        .append($('<td>').text(department))
+                        .append($('<td>').text(years))
+                        .append($('<td>')
+                            .append($('<button>').attr({
+                                'type': 'button',
+                                'class': 'btn btn-sm btn-warning me-1 editExperienceBtn'
+                            }).html('<i class="fas fa-edit"></i>'))
+                            .append($('<button>').attr({
+                                'type': 'button',
+                                'class': 'btn btn-sm btn-danger removeExperienceBtn'
+                            }).html('<i class="fas fa-trash-alt"></i>'))
+                        );
+                    $("#experienceDetails").append(newRow);
+                }
 
-                        var employeeId = $('#Employee_EmployeeID').val();
-                        var name = $('#Employee_Name').val();
-                        var age = $('#Employee_Age').val();
-                        var gender = $('#Employee_Gender').val();
-                        var contact = $('#Employee_Contact').val();
+                // Clear and close modal
+                $("#experienceCompany, #experienceDepartment, #experienceYears").val('');
+                $("#experienceModal").modal('hide');
+            });
 
-                        var experienceid = $('#Experience_ExperienceID').val()
-                        var department = $('#Experience_Department').val();
-                        var years = $('#Experience_Years').val();
+            // Event delegation for dynamic buttons
+            $("#experienceDetails").on('click', '.removeExperienceBtn', function() {
+                const row = $(this).closest('tr');
+                const experienceId = row.data("id");
+                if (experienceId && !experienceId.toString().startsWith("new_")) {
+                    deletedExperiences.push(experienceId);
+                }
+                row.remove();
+            });
 
+            $("#experienceDetails").on('click', '.editExperienceBtn', function() {
+                editingRow = $(this).closest('tr');
+                const cells = editingRow.find('td');
 
-                    var modelData = {
-                    Employee: {
-                        EmployeeID: employeeId,
-                        Name: name,
-                        Age: age,
-                        Gender: gender,
-                        Contact: contact
-                    },
-                    Experience: {
-                        ExperienceID: experienceid,
-                        EmployeeID: employeeId,
-                        Department: department,
-                        Years: years
-                    } 
-            };
-              
+                $("#experienceCompany").val(cells.eq(0).text());
+                $("#experienceDepartment").val(cells.eq(1).text());
+                $("#experienceYears").val(cells.eq(2).text());
 
-                $.ajax({
-                    url: '/Employee/Create',
-                    type: 'POST',
-                    data: modelData ,
-                    headers: {
-                        'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val()
-                    },
-                    success: function (result) {
-                        alertify.success("Employee created successfully!");
-                        form[0].reset(); 
-                        $('.text-danger').text("");
-                         window.location.href = '/Employee/List';
+                $("#experienceModal").modal('show');
+            });
 
-                    },
-                    error: function (xhr) {
-                        if (xhr.status === 400 && xhr.responseJSON) {
-                            const errors = xhr.responseJSON;
-                            $('.text-danger').text(""); 
+            // Form submission handler
+            $("#employeeForm").on("submit", function () {
+                $(".dynamicExperienceInput").remove();
 
-                            for (const key in errors) {
-                                const errorSpan = $(`[data-valmsg-for="${key}"]`);
-                                errorSpan.text(errors[key][0]);
-                            }
+                // Add deleted experiences if any
+                if (deletedExperiences.length > 0) {
+                    $('<input>')
+                        .attr({
+                            'type': 'hidden',
+                            'name': 'DeletedExperienceIds'
+                        })
+                        .val(deletedExperiences.join(','))
+                        .addClass('dynamicExperienceInput')
+                        .appendTo(this);
+                }
 
-                            alertify.error("Validation failed.");
-                        } else {
-                            alertify.error("Something went wrong!");
+                // Add current experiences
+                $("#experienceDetails tr").each(function (index) {
+                    const row = $(this);
+                    const experienceId = row.data("id");
+                    const cells = row.find('td');
+
+                    if (cells.length >= 3 && !deletedExperiences.includes(experienceId)) {
+                        const fields = [
+                            { name: 'Company', value: cells.eq(0).text().trim() },
+                            { name: 'Department', value: cells.eq(1).text().trim() },
+                            { name: 'Years', value: cells.eq(2).text().trim() }
+                        ];
+
+                        $.each(fields, function(i, field) {
+                            $('<input>')
+                                .attr({
+                                    'type': 'hidden',
+                                    'name': `Experiences[${index}].${field.name}`
+                                })
+                                .val(field.value)
+                                .addClass('dynamicExperienceInput')
+                                .appendTo('#employeeForm');
+                        });
+
+                        if (experienceId && !experienceId.toString().startsWith("new_")) {
+                            $('<input>')
+                                .attr({
+                                    'type': 'hidden',
+                                    'name': `Experiences[${index}].ExperienceID`
+                                })
+                                .val(experienceId)
+                                .addClass('dynamicExperienceInput')
+                                .appendTo('#employeeForm');
                         }
                     }
                 });
             });
         });
-
-
-
     </script>
 }
