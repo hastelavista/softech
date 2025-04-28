@@ -20,9 +20,11 @@
 	<link href="~/lib/alertifyjs/css/themes/default.min.css" rel="stylesheet" />
 
 
-
-
 </head>
+
+
+
+
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
@@ -32,18 +34,19 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                @* </div> *@
+
+                @* <div> *@
+                <ul class="navbar-nav ms-auto">
+                    @if (User.Identity.IsAuthenticated)
+                    {
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark" href="@Url.Action("Logout", "Account")">
+                                <i class="fas fa-sign-out-alt"></i>
+                            </a>
                         </li>
-
-                        </li>
-
-                       
-
-                    </ul>
-                </div>
+                    }
+                </ul>
             </div>
         </nav>
     </header>
@@ -53,11 +56,18 @@
         </main>
     </div>
 
+
+
+
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2025 - employee - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+
+
+
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="~/lib/datatables/jquery.datatables.js"></script>

@@ -1,11 +1,14 @@
 ﻿using employee.Data;
 using employee.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using X.PagedList;
 using X.PagedList.Extensions;
 
 namespace employee.Controllers
 {
+
+    [Authorize]
     public class EmployeeController : Controller
     {
         private readonly ApplicationDbContext _context;
