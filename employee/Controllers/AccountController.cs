@@ -39,7 +39,7 @@ namespace employee.Controllers
 
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
 
-                return RedirectToAction("List", "Employee"); // After login
+                return RedirectToAction("GetEmployeeList", "Employee"); // After login
             }
 
             ViewBag.Error = "Invalid username or password";

@@ -1,13 +1,13 @@
-﻿@model IPagedList<employee.Models.EmployeeFormViewModel>
-@using X.PagedList.Mvc.Core
-@using X.PagedList
+﻿@model List<employee.Models.EmployeeFormViewModel>
 
 <div class="container">
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h2 class="mb-0">Employee List</h2>
 
         <div class="d-flex justify-content-between align-items-center flex-wrap">
+
             <form id="searchForm" class="d-flex align-items-center me-3 mb-2 mb-md-0" method="get" action="/Employee/List">
+                    @*        method="get" action="/Employee/List"*@                
                 <div class="input-group">
                     <input type="text" id="searchQuery" class="form-control" name="query" placeholder="Search" value="@(ViewContext.HttpContext.Request.Query["query"])" />
                     <button type="submit" class="btn btn-primary">Search</button>
@@ -15,22 +15,18 @@
             </form>
 
             <div class="d-flex align-items-center">
-                <a href="#" class="btn btn-outline-success me-2 btnExcel" title="Export to Excel">
-                    <i class="fa fa-file-excel fa-sm"></i>
-                </a>
-                <a href="#" class="btn btn-outline-secondary me-2 btnPrint" title="Print Table">
-                    <i class="fa fa-print fa-sm"></i>
-                </a>
-                <a href="/Employee/Create" class="btn btn-primary">
+                <a href="/Employee/Create" class="btn btn-primary" id="btnOpenCreateModal">
                     <i class="fa fa-plus fa-sm"></i>
                 </a>
             </div>
         </div>
     </div>
 
+    
     <div class="table-responsive w-100 px-0 mx-0" id="employeeTable">
         <div style="max-height: 500px; overflow-y: auto;">
             <table class="table table-sm table-striped table-bordered table-hover align-middle">
+                
                 <thead class="table-dark text-nowrap" style="position: sticky; top: 0; z-index: 2;">
                     <tr>
                         <th style="width: 50px;">S.N.</th>
@@ -42,84 +38,102 @@
                         <th style="width: 100px;"></th>
                     </tr>
                 </thead>
-                <tbody class="text-nowrap">
-                    @{
-                        int sn = ((Model.PageNumber - 1) * Model.PageSize) + 1;
-                    }
 
-                    @foreach (var emp in Model)
-                    {
-                        var totalYears = emp.Experiences?.Sum(e => e.Years) ?? 0;
-                        <tr>
-                            <td>@sn</td>
-                            <td>
-                                <div class="text-truncate" style="max-width: 140px;" title="@emp.Employee.Name">
-                                    @emp.Employee.Name
-                                </div>
-                            </td>
-                            <td>@emp.Employee.Age</td>
-                            <td>@emp.Employee.Gender</td>
-                            <td>
-                                <div class="text-truncate" style="max-width: 150px;" title="@emp.Employee.Contact">
-                                    @emp.Employee.Contact
-                                </div>
-                            </td>
-
-                            <td>@totalYears</td>
-                            <td>
-                                <a href="/Employee/Create/@emp.Employee.EmployeeID" class="btn btn-sm btn-warning me-2">
-                                    <i class="fa fa-edit"></i>
-                                </a>
-                                <button class="btn btn-sm btn-danger delete-btn" data-id="@emp.Employee.EmployeeID">
-                                    <i class="fa fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        sn++;
-                    }
-                </tbody>
+                <tbody id="employeeTableBody" class="text-nowrap"> </tbody>
+               
             </table>
         </div>
     </div>
 
-    <div class="d-flex justify-content-center mt-3">
-        @Html.PagedListPager(Model, page => Url.Action("List", new { page, query = ViewContext.HttpContext.Request.Query["query"] }),
-                 new PagedListRenderOptions
-        {
-            Display = PagedListDisplayMode.IfNeeded,
-            DisplayLinkToFirstPage = PagedListDisplayMode.Always,
-            DisplayLinkToLastPage = PagedListDisplayMode.Always,
-            DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
-            DisplayLinkToNextPage = PagedListDisplayMode.Always,
-            DisplayPageCountAndCurrentLocation = false,
-            DisplayItemSliceAndTotal = false,
-            MaximumPageNumbersToDisplay = 5,
-            UlElementClasses = new[] { "pagination" },
-            LiElementClasses = new[] { "page-item" },
-            PageClasses = new[] { "page-link" }
-        })
+    <div id="createEmployeeModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"> 
+        <div class="modal-dialog"> 
+             <div class="modal-content"> 
+             </div> 
+       </div>
     </div>
+
+
 </div>
 
 
 @section Scripts {
     <script>
+
+         // FUNCTION TO LOAD EMPLOYEES
+            function loadEmployees() {
+                $('#employeeTableBody').empty();
+
+                $.ajax({
+                    url: '/Employee/ListEmployees',
+                    type: 'GET',
+                    success: function (data) {
+                        //console.log("Received data:", data);
+                        let sn = 1;
+                        $.each(data, function (index,emp) {
+                            const totalYears = emp.experiences ? emp.experiences.reduce((sum, e) => sum + e.years, 0) : 0;
+
+                            let row = `<tr>
+                                <td>${sn}</td>
+                                <td>${emp.employee.name}</td>
+                                <td>${emp.employee.age}</td>
+                                <td>${emp.employee.gender}</td>
+                                <td>${emp.employee.contact}</td>
+                                <td>${totalYears}</td>
+                                <td>
+                                    <button class="btn btn-sm btn-warning me-2 edit-btn" data-id="${emp.employee.employeeID}"><i class="fa fa-edit"></i></button>
+                                    <button class="btn btn-sm btn-danger delete-btn" data-id="${emp.employee.employeeID}"><i class="fa fa-trash"></i></button>
+                                </td>
+                            </tr>`;
+                            $('#employeeTableBody').append(row);
+                            sn++;
+                        });
+                    },
+                    error: function (err) {
+                        alertify.error("Error loading employees");
+                        console.log(err);
+                    }
+                });
+            }
+
         $(document).ready(function () {
 
-            var dt = $ (".table").DataTable({
-                "paging": false,
-                "lengthchange": true,
-                "searching": false,
-                "aaSorting": [],
-                "info" : false,
-                "autoWidth" : false,
-                "responsive": false,
+            loadEmployees();
+
+
+
+            // OPEN CREATE MODAL
+            $(document).on('click', '#btnOpenCreateModal', function (e) {
+                e.preventDefault();
+                $.get('/Employee/GetEmployee', function (response) {
+                    
+                    $('#createEmployeeModal .modal-content').html(response);
+                    $('#createEmployeeModal').modal('show');
+                                              initializemodal();
+
+                });
             });
-          
-            
-            $('.delete-btn').click(function () {
-           
-                var employeeId = $(this).data('id');
+
+            // OPEN CREATE MODAL AS EDIT MODE
+            $(document).on('click', '.edit-btn', function (e) {
+                 e.preventDefault()
+                const id = $(this).data('id');
+                $.ajax({
+                    url: '/Employee/GetEmployee/' + id,
+                    type: 'GET',
+                    success: function (data) {
+                           
+
+                           $('#createEmployeeModal .modal-content').html(data);
+                           $('#createEmployeeModal').modal('show');
+                           initializemodal();
+
+                    }
+                });
+            });
+
+            // DELETE EMPLOYEE
+            $(document).on('click', '.delete-btn', function () {
+                const employeeId = $(this).data('id');
 
                 alertify.confirm("Confirm Deletion", "Are you sure you want to delete this employee?",
                     function () {
@@ -130,13 +144,11 @@
                                 'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val() || ''
                             },
                             success: function () {
-                                alertify.success("Employee deleted successfully.");
-                                setTimeout(function () {
-                                    location.reload();
-                                }, 1000);
+                                alertify.success("Employee Deleted");
+                                loadEmployees(); // Reload the table
                             },
                             error: function () {
-                                alertify.error("Failed to delete employee.");
+                                alertify.error("Delete failed.");
                             }
                         });
                     },
@@ -145,45 +157,19 @@
                     });
             });
 
-
-            $('.btnPrint').off('click').on('click', function (e) {
-            e.preventDefault();
-
-                $('.table').printThis({
-                    debug: false,
-                    importCSS: false,
-                    importStyle: true,
-                    printContainer: true,
-                    loadCSS: "/css/print.css",
-                    pageTitle: "",
-                    removeInline: false,
-                    formValues: true,
-                    beforePrint: function () {
-                        dt.columns($('thead tr th').length - 1).visible(false);
-                    },
-                    afterPrint: function () {
-                        dt.columns($('thead tr th').length).visible(true);
-                    }
-                });
-
-            });
-
-            $('.btnExcel').off('click').on('click', function (e) {
-            e.preventDefault();
-
-            let query = $('#searchQuery').val(); // grab the search query
-
-            alertify.confirm('Download Excel', 'Do you want to download the full Employee List as an Excel file?',
-                function () {
-                    window.location.href = '/Export/Employees?format=excel&query=' + encodeURIComponent(query) + '&format=excel';
-                },
-                function () {
-                    alertify.message('Download canceled.');
-                }
-            );
         });
 
-        
-        });
+        // $(`#searchform`).on(`submit`, function(e){
+        //     e.preventDefault();
+
+        //     var query = $(`searchQuery`).val();
+
+        //     $.ajax({
+        //         url: `/Employee/ListEmployees`,
+        //         method: 'GET',
+        //         data: {query},
+        //     });
+        // });
     </script>
 }
+
