@@ -50,6 +50,30 @@ namespace employee.Controllers
             //});
         }
 
+
+        //js checking 
+        [HttpPost]
+        public IActionResult Save([FromBody] Employee employee)
+        {
+            if (ModelState.IsValid)
+            {
+                if (employee.EmployeeID > 0)
+                {
+                    _context.Employees.Update(employee);
+                }
+                else
+                {
+                    _context.Employees.Add(employee);
+                }
+
+                _context.SaveChanges();
+                return Ok(new { message = "Employee saved successfully!" });
+            }
+
+            return BadRequest(ModelState);
+        }
+
+
         [HttpPost]
         public IActionResult Create(EmployeeFormViewModel model, string? deletedExperienceIds)
         {
@@ -112,6 +136,7 @@ namespace employee.Controllers
         {
             return View();
         }
+
 
         [HttpGet]
         public IActionResult ListEmployees(string query)

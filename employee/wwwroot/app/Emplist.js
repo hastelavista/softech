@@ -1,27 +1,17 @@
 ﻿var EmployeeList = [];
 var dataGrid;
+
+$(() => {
+ loadEmployee(datagridinit);
+});
+
 function loadEmployee(onSuccess) {
     $.ajax({
         url: '/Employee/ListEmployees',
         type: 'GET',
         success: function (res) {
-            //EmployeeList = res
-            //res.forEach(emp => {
-            //    emp.experiences.forEach(exp => {
-            //        EmployeeList.push({
-            //            employeeID: emp.employee.employeeID,
-            //            name: emp.employee.name,
-            //            age: emp.employee.age,
-            //            gender: emp.employee.gender,
-            //            contact: emp.employee.contact,
-            //            company: exp.company,
-            //            department: exp.department,
-            //            years: exp.years
-            //        });
-            //    });
-            //});
+        
             const merged = {};
-
             res.forEach(entry => {
                 const emp = entry.employee;
                 const empId = emp.employeeID;
@@ -67,51 +57,15 @@ function datagridinit() {
         dataSource: EmployeeList,
         keyExpr: "employeeID",
 
-        
-         //custom toolbar to add
-         //onToolbarPreparing: function (e) {
-         //    e.toolbarOptions.items.unshift({
-         //        location: "after",
-         //        widget: "dxButton",
-         //        options: {
-         //            icon: "add",
-         //            text: "",
-         //            onClick: function () {
-         //                $.get('/Employee/GetEmployee', function (response)
-         //                {
-         //                    $('#createEmployeeModal .modal-content').html(response);
-         //                    $('#createEmployeeModal').modal('show');
-         //                    initializemodal();
-         //                });
-         //            }
-         //        }
-         //    });
-         //},
-
-         editing: {},
-         form: {},
+       
 
         columnFixing: { enabled: true },
         columns: [
-            {
-                dataField: "name",
-                caption: "नाम",
-                allowgrouping: false
-            },
-            {
-                dataField: "age",
-                allowgrouping: true
-            },
-            {
-                dataField: "gender",
-            },
-            {
-                dataField: "contact",
-            },
-            {
-                dataField: 'years'
-                
-            },
+            { dataField: "name", caption: "नाम",allowgrouping: false },
+            { dataField: "age", allowgrouping: true },
+            { dataField: "gender" },
+            { dataField: "contact"},
+            { dataField: 'years'},
             {
                 type: "buttons",
                 buttons: [
@@ -170,8 +124,6 @@ function datagridinit() {
                 ]
 
             }
-
-
         ],
 
         filterRow: { visible: true },
@@ -180,15 +132,25 @@ function datagridinit() {
         allowColumnReordering: true,
         allowColumnResizing: true,
         columnAutoWidth: true,
-
         selection: { mode: "single" },
 
+         //custom toolbar to add
+         onToolbarPreparing: function (e) {
+             e.toolbarOptions.items.unshift({
+                 location: "after",
+                 widget: "dxButton",
+                 options: {
+                     icon: "add",
+                     text: "",
+                     type: "default",
+                     onClick: function () {
+                         console.log("Add button clicked");
 
-        summary: {
-            groupItems: [{
-                summaryType: "count"
-            }]
-        },
+                         openEmployeeForm();
+                     }
+                 }
+             });
+         },
 
     
     }).dxDataGrid("instance");
@@ -200,7 +162,5 @@ function datagridinit() {
 
 
 
-$(() => {
-    loadEmployee(datagridinit);
-});
+
 

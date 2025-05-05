@@ -1,5 +1,23 @@
 ﻿<Project>
   <ItemGroup>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\app\Empform.js'))">
+      <SourceType>Package</SourceType>
+      <SourceId>employee</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/employee</BasePath>
+      <RelativePath>app/Empform.js</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>sz8ke4bm5c</Fingerprint>
+      <Integrity>iPij8HaHugsVdNUg81ymAAf96vf+tdcvGELz3sRKYis=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\app\Empform.js'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\app\Emplist.js'))">
       <SourceType>Package</SourceType>
       <SourceId>employee</SourceId>
@@ -12,8 +30,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>ejhqh8wtxh</Fingerprint>
-      <Integrity>thPwRjmL6f3nCKYuhhoJEHoiBqhVb8Yomz2a1wiWeB8=</Integrity>
+      <Fingerprint>irntpq7log</Fingerprint>
+      <Integrity>ctGIghqfqlT4pCDh0NgowN7wUF5W87OTSNAK1ioy62c=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\app\Emplist.js'))</OriginalItemSpec>

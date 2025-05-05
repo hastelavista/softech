@@ -7,28 +7,20 @@
       "RelativeMoniker": "D:0:0:{A9012B92-8ED4-4898-8B3D-CE0FA8BD01D2}|employee.csproj|solutionrelative:wwwroot\\app\\emplist.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A9012B92-8ED4-4898-8B3D-CE0FA8BD01D2}|employee.csproj|c:\\users\\nihar\\desktop\\softech\\employee\\models\\experience.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A9012B92-8ED4-4898-8B3D-CE0FA8BD01D2}|employee.csproj|solutionrelative:models\\experience.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A9012B92-8ED4-4898-8B3D-CE0FA8BD01D2}|employee.csproj|c:\\users\\nihar\\desktop\\softech\\employee\\wwwroot\\app\\empform.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A9012B92-8ED4-4898-8B3D-CE0FA8BD01D2}|employee.csproj|solutionrelative:wwwroot\\app\\empform.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A9012B92-8ED4-4898-8B3D-CE0FA8BD01D2}|employee.csproj|c:\\users\\nihar\\desktop\\softech\\employee\\models\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A9012B92-8ED4-4898-8B3D-CE0FA8BD01D2}|employee.csproj|solutionrelative:models\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A9012B92-8ED4-4898-8B3D-CE0FA8BD01D2}|employee.csproj|c:\\users\\nihar\\desktop\\softech\\employee\\controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A9012B92-8ED4-4898-8B3D-CE0FA8BD01D2}|employee.csproj|solutionrelative:controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A9012B92-8ED4-4898-8B3D-CE0FA8BD01D2}|employee.csproj|c:\\users\\nihar\\desktop\\softech\\employee\\views\\employee\\listnew.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{A9012B92-8ED4-4898-8B3D-CE0FA8BD01D2}|employee.csproj|solutionrelative:views\\employee\\listnew.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A9012B92-8ED4-4898-8B3D-CE0FA8BD01D2}|employee.csproj|c:\\users\\nihar\\desktop\\softech\\employee\\views\\employee\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{A9012B92-8ED4-4898-8B3D-CE0FA8BD01D2}|employee.csproj|solutionrelative:views\\employee\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A9012B92-8ED4-4898-8B3D-CE0FA8BD01D2}|employee.csproj|c:\\users\\nihar\\desktop\\softech\\employee\\views\\employee\\list.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{A9012B92-8ED4-4898-8B3D-CE0FA8BD01D2}|employee.csproj|solutionrelative:views\\employee\\list.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A9012B92-8ED4-4898-8B3D-CE0FA8BD01D2}|employee.csproj|c:\\users\\nihar\\desktop\\softech\\employee\\controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A9012B92-8ED4-4898-8B3D-CE0FA8BD01D2}|employee.csproj|solutionrelative:controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A9012B92-8ED4-4898-8B3D-CE0FA8BD01D2}|employee.csproj|c:\\users\\nihar\\desktop\\softech\\employee\\models\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A9012B92-8ED4-4898-8B3D-CE0FA8BD01D2}|employee.csproj|solutionrelative:models\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -48,7 +40,7 @@
               "RelativeDocumentMoniker": "wwwroot\\app\\Emplist.js",
               "ToolTip": "C:\\Users\\nihar\\Desktop\\softech\\employee\\wwwroot\\app\\Emplist.js",
               "RelativeToolTip": "wwwroot\\app\\Emplist.js",
-              "ViewState": "AgIAADwAAAAAAAAAAAAuwEQAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAcwDMAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
               "WhenOpened": "2025-05-04T09:29:10.905Z",
               "IsPinned": true,
@@ -56,20 +48,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Experience.cs",
-              "DocumentMoniker": "C:\\Users\\nihar\\Desktop\\softech\\employee\\Models\\Experience.cs",
-              "RelativeDocumentMoniker": "Models\\Experience.cs",
-              "ToolTip": "C:\\Users\\nihar\\Desktop\\softech\\employee\\Models\\Experience.cs",
-              "RelativeToolTip": "Models\\Experience.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-05T05:59:05.647Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "Employee.cs",
               "DocumentMoniker": "C:\\Users\\nihar\\Desktop\\softech\\employee\\Models\\Employee.cs",
               "RelativeDocumentMoniker": "Models\\Employee.cs",
@@ -77,46 +56,32 @@
               "RelativeToolTip": "Models\\Employee.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-05T05:57:51.887Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-05T10:41:37.149Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "List.cshtml",
-              "DocumentMoniker": "C:\\Users\\nihar\\Desktop\\softech\\employee\\Views\\Employee\\List.cshtml",
-              "RelativeDocumentMoniker": "Views\\Employee\\List.cshtml",
-              "ToolTip": "C:\\Users\\nihar\\Desktop\\softech\\employee\\Views\\Employee\\List.cshtml",
-              "RelativeToolTip": "Views\\Employee\\List.cshtml",
-              "ViewState": "AgIAADwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-05T05:33:31.895Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Create.cshtml",
-              "DocumentMoniker": "C:\\Users\\nihar\\Desktop\\softech\\employee\\Views\\Employee\\Create.cshtml",
-              "RelativeDocumentMoniker": "Views\\Employee\\Create.cshtml",
-              "ToolTip": "C:\\Users\\nihar\\Desktop\\softech\\employee\\Views\\Employee\\Create.cshtml",
-              "RelativeToolTip": "Views\\Employee\\Create.cshtml",
-              "ViewState": "AgIAALcAAAAAAAAAAAAcwBgBAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-05T05:32:43.125Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 2,
               "Title": "EmployeeController.cs",
               "DocumentMoniker": "C:\\Users\\nihar\\Desktop\\softech\\employee\\Controllers\\EmployeeController.cs",
               "RelativeDocumentMoniker": "Controllers\\EmployeeController.cs",
               "ToolTip": "C:\\Users\\nihar\\Desktop\\softech\\employee\\Controllers\\EmployeeController.cs",
               "RelativeToolTip": "Controllers\\EmployeeController.cs",
-              "ViewState": "AgIAAFMAAAAAAAAAAAAgwGYAAAAbAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADUAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-05T05:32:17.408Z",
+              "WhenOpened": "2025-05-05T10:38:35.299Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Empform.js",
+              "DocumentMoniker": "C:\\Users\\nihar\\Desktop\\softech\\employee\\wwwroot\\app\\Empform.js",
+              "RelativeDocumentMoniker": "wwwroot\\app\\Empform.js",
+              "ToolTip": "C:\\Users\\nihar\\Desktop\\softech\\employee\\wwwroot\\app\\Empform.js",
+              "RelativeToolTip": "wwwroot\\app\\Empform.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-05-05T08:59:24.681Z",
               "EditorCaption": ""
             },
             {
@@ -127,10 +92,9 @@
               "RelativeDocumentMoniker": "Views\\Employee\\ListNew.cshtml",
               "ToolTip": "C:\\Users\\nihar\\Desktop\\softech\\employee\\Views\\Employee\\ListNew.cshtml",
               "RelativeToolTip": "Views\\Employee\\ListNew.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAgAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-04T09:27:26.79Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-04T09:27:26.79Z"
             }
           ]
         }

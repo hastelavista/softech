@@ -1,16 +1,28 @@
 ﻿<Project>
   <ItemGroup>
-    <StaticWebAssetEndpoint Include="_content/employee/app/Emplist.ejhqh8wtxh.js">
+    <StaticWebAssetEndpoint Include="_content/employee/app/Empform.js">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\app\Empform.js'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-iPij8HaHugsVdNUg81ymAAf96vf\u002BtdcvGELz3sRKYis="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"6242"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022iPij8HaHugsVdNUg81ymAAf96vf\u002BtdcvGELz3sRKYis=\u0022"},{"Name":"Last-Modified","Value":"Mon, 05 May 2025 10:54:59 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/employee/app/Empform.sz8ke4bm5c.js">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\app\Empform.js'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"sz8ke4bm5c"},{"Name":"integrity","Value":"sha256-iPij8HaHugsVdNUg81ymAAf96vf\u002BtdcvGELz3sRKYis="},{"Name":"label","Value":"_content/employee/app/Empform.js"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"6242"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022iPij8HaHugsVdNUg81ymAAf96vf\u002BtdcvGELz3sRKYis=\u0022"},{"Name":"Last-Modified","Value":"Mon, 05 May 2025 10:54:59 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/employee/app/Emplist.irntpq7log.js">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\app\Emplist.js'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"ejhqh8wtxh"},{"Name":"integrity","Value":"sha256-thPwRjmL6f3nCKYuhhoJEHoiBqhVb8Yomz2a1wiWeB8="},{"Name":"label","Value":"_content/employee/app/Emplist.js"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"6440"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022thPwRjmL6f3nCKYuhhoJEHoiBqhVb8Yomz2a1wiWeB8=\u0022"},{"Name":"Last-Modified","Value":"Mon, 05 May 2025 05:20:44 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"irntpq7log"},{"Name":"integrity","Value":"sha256-ctGIghqfqlT4pCDh0NgowN7wUF5W87OTSNAK1ioy62c="},{"Name":"label","Value":"_content/employee/app/Emplist.js"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"5266"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022ctGIghqfqlT4pCDh0NgowN7wUF5W87OTSNAK1ioy62c=\u0022"},{"Name":"Last-Modified","Value":"Mon, 05 May 2025 09:25:19 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/employee/app/Emplist.js">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\app\Emplist.js'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-thPwRjmL6f3nCKYuhhoJEHoiBqhVb8Yomz2a1wiWeB8="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"6440"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022thPwRjmL6f3nCKYuhhoJEHoiBqhVb8Yomz2a1wiWeB8=\u0022"},{"Name":"Last-Modified","Value":"Mon, 05 May 2025 05:20:44 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-ctGIghqfqlT4pCDh0NgowN7wUF5W87OTSNAK1ioy62c="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"5266"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022ctGIghqfqlT4pCDh0NgowN7wUF5W87OTSNAK1ioy62c=\u0022"},{"Name":"Last-Modified","Value":"Mon, 05 May 2025 09:25:19 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/employee/css/print.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\print.css'))</AssetFile>
