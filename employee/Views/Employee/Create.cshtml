@@ -141,178 +141,173 @@
 <script>
 
     function initializemodal() {
-            let editingRow = null;
-            let experienceCounter = 0;
-            let deletedExperiences = [];
+        let editingRow = null;
+        let experienceCounter = 0;
+        let deletedExperiences = [];
 
-             // Populate existing experiences
-            //const existingExperiences = @Html.Raw(Json.Serialize(Model.Experiences));
+        // Populate existing experiences
+        const exp = $("#expJson").val();
+        const existingExperiences = JSON.parse(exp);
+        console.log(existingExperiences);
 
-            const exp = $("#expJson").val(); // $('#experience-data').html()
-            const existingExperiences = JSON.parse(exp);
-            console.log(existingExperiences);
+        $("#experienceDetails").empty();
 
+        if (existingExperiences && existingExperiences.length > 0) {
+            $.each(existingExperiences, function(index, experience) {
+                const newRow = $('<tr>').attr('data-id', experience.experienceID)
+                    .append($('<td>').text(experience.company))
+                    .append($('<td>').text(experience.department))
+                    .append($('<td>').text(experience.years))
+                    .append($('<td>')
+                        .append($('<button>').attr({
+                            'type': 'button',
+                            'class': 'btn btn-sm btn-warning me-1 editExperienceBtn'
+                        }).html('<i class="fas fa-edit"></i>'))
+                        .append($('<button>').attr({
+                            'type': 'button',
+                            'class': 'btn btn-sm btn-danger removeExperienceBtn'
+                        }).html('<i class="fas fa-trash-alt"></i>'))
+                    );
+                $("#experienceDetails").append(newRow);
+            });
+        }
 
-            $("#experienceDetails").empty();
+        // Save Experience
+        $(document).off("click", "#saveExperienceBtn").on("click", "#saveExperienceBtn", function () {
+            const company = $("#experienceCompany").val();
+            const department = $("#experienceDepartment").val();
+            const years = $("#experienceYears").val();
+            const experienceId = editingRow ? $(editingRow).data("id") : null;
 
-            if (existingExperiences && existingExperiences.length > 0) {
-                $.each(existingExperiences, function(index, experience) {
-                    const newRow = $('<tr>').attr('data-id', experience.experienceID)
-                        .append($('<td>').text(experience.company)) 
-                        .append($('<td>').text(experience.department))
-                        .append($('<td>').text(experience.years))
-                        .append($('<td>')
-                            .append($('<button>').attr({
-                                'type': 'button',
-                                'class': 'btn btn-sm btn-warning me-1 editExperienceBtn'
-                            }).html('<i class="fas fa-edit"></i>'))
-                            .append($('<button>').attr({
-                                'type': 'button',
-                                'class': 'btn btn-sm btn-danger removeExperienceBtn'
-                            }).html('<i class="fas fa-trash-alt"></i>'))
-                        );
-                    $("#experienceDetails").append(newRow);
-                });
+            if (editingRow) {
+                $(editingRow).find("td:eq(0)").text(company);
+                $(editingRow).find("td:eq(1)").text(department);
+                $(editingRow).find("td:eq(2)").text(years);
+                editingRow = null;
+            } else {
+                const newRow = $('<tr>').attr('data-id', 'new_' + experienceCounter++)
+                    .append($('<td>').text(company))
+                    .append($('<td>').text(department))
+                    .append($('<td>').text(years))
+                    .append($('<td>')
+                        .append($('<button>').attr({
+                            'type': 'button',
+                            'class': 'btn btn-sm btn-warning me-1 editExperienceBtn'
+                        }).html('<i class="fas fa-edit"></i>'))
+                        .append($('<button>').attr({
+                            'type': 'button',
+                            'class': 'btn btn-sm btn-danger removeExperienceBtn'
+                        }).html('<i class="fas fa-trash-alt"></i>'))
+                    );
+                $("#experienceDetails").append(newRow);
             }
 
+            // Clear and close modal
+            $("#experienceCompany, #experienceDepartment, #experienceYears").val('');
+            $("#experienceModal").modal('hide');
+        });
 
-                  // Save experience handler
-            $(document).off("click", "#saveExperienceBtn").on("click", "#saveExperienceBtn", function () {
-                const company = $("#experienceCompany").val();
-                const department = $("#experienceDepartment").val();
-                const years = $("#experienceYears").val();
-                const experienceId = editingRow ? $(editingRow).data("id") : null;
+        // Remove row
+        $(document).off("click", ".removeExperienceBtn").on("click", ".removeExperienceBtn", function () {
+            const row = $(this).closest('tr');
+            const experienceId = row.data("id");
+            if (experienceId && !experienceId.toString().startsWith("new_")) {
+                deletedExperiences.push(experienceId);
+            }
+            row.remove();
+        });
 
-                if (editingRow) {
-                    $(editingRow).find("td:eq(0)").text(company);
-                    $(editingRow).find("td:eq(1)").text(department);
-                    $(editingRow).find("td:eq(2)").text(years);
-                    editingRow = null;
-                } else {
-                    const newRow = $('<tr>').attr('data-id', 'new_' + experienceCounter++)
-                        .append($('<td>').text(company))
-                        .append($('<td>').text(department))
-                        .append($('<td>').text(years))
-                        .append($('<td>')
-                            .append($('<button>').attr({
-                                'type': 'button',
-                                'class': 'btn btn-sm btn-warning me-1 editExperienceBtn'
-                            }).html('<i class="fas fa-edit"></i>'))
-                            .append($('<button>').attr({
-                                'type': 'button',
-                                'class': 'btn btn-sm btn-danger removeExperienceBtn'
-                            }).html('<i class="fas fa-trash-alt"></i>'))
-                        );
-                    $("#experienceDetails").append(newRow);
-                }
+        // Edit row
+        $(document).off("click", ".editExperienceBtn").on("click", ".editExperienceBtn", function () {
+            editingRow = $(this).closest('tr');
+            const cells = editingRow.find('td');
+            $("#experienceCompany").val(cells.eq(0).text());
+            $("#experienceDepartment").val(cells.eq(1).text());
+            $("#experienceYears").val(cells.eq(2).text());
+            $("#experienceModal").modal('show');
+        });
 
-                // Clear and close modal
-                $("#experienceCompany, #experienceDepartment, #experienceYears").val('');
-                $("#experienceModal").modal('hide');
-            });
+        // Form submission handler
+        $(document).off("submit", "#employeeForm").on("submit", "#employeeForm", function (e) {
+            e.preventDefault();
+            $(".dynamicExperienceInput").remove();
 
+            // Add deleted experiences if any
+            if (deletedExperiences.length > 0) {
+                $('<input>')
+                    .attr({
+                        'type': 'hidden',
+                        'name': 'DeletedExperienceIds'
+                    })
+                    .val(deletedExperiences.join(','))
+                    .addClass('dynamicExperienceInput')
+                    .appendTo(this);
+            }
 
-                    // Remove row
-                $(document).off("click", ".removeExperienceBtn").on("click", ".removeExperienceBtn", function () {
-                    const row = $(this).closest('tr');
-                    const experienceId = row.data("id");
-                    if (experienceId && !experienceId.toString().startsWith("new_")) {
-                        deletedExperiences.push(experienceId);
-                    }
-                    row.remove();
-                });
+            // Add current experiences
+            $("#experienceDetails tr").each(function (index) {
+                const row = $(this);
+                const experienceId = row.data("id");
+                const cells = row.find('td');
 
-                // Edit row
-                $(document).off("click", ".editExperienceBtn").on("click", ".editExperienceBtn", function () {
-                    editingRow = $(this).closest('tr');
-                    const cells = editingRow.find('td');
-                    $("#experienceCompany").val(cells.eq(0).text());
-                    $("#experienceDepartment").val(cells.eq(1).text());
-                    $("#experienceYears").val(cells.eq(2).text());
-                    $("#experienceModal").modal('show');
+                if (cells.length >= 3 && !deletedExperiences.includes(experienceId)) {
+                    const fields = [
+                        { name: 'Company', value: cells.eq(0).text().trim() },
+                        { name: 'Department', value: cells.eq(1).text().trim() },
+                        { name: 'Years', value: cells.eq(2).text().trim() }
+                    ];
 
-                    const company = editingRow.find("td:eq(0)").text();
-                    const department = editingRow.find("td:eq(1)").text();
-   
-                });
-
-            // Form submission handler
-                 $(document).off("submit", "#employeeForm").on("submit", "#employeeForm", function (e) {
-                   e.preventDefault();
-                    $(".dynamicExperienceInput").remove();
-
-                    // Add deleted experiences if any
-                    if (deletedExperiences.length > 0) {
+                    $.each(fields, function(i, field) {
                         $('<input>')
                             .attr({
                                 'type': 'hidden',
-                                'name': 'DeletedExperienceIds'
+                                'name': `Experiences[${index}].${field.name}`
                             })
-                            .val(deletedExperiences.join(','))
+                            .val(field.value)
                             .addClass('dynamicExperienceInput')
-                            .appendTo(this);
-                    }
-
-                    // Add current experiences
-                    $("#experienceDetails tr").each(function (index) {
-                        const row = $(this);
-                        const experienceId = row.data("id");
-                        const cells = row.find('td');
-
-                        if (cells.length >= 3 && !deletedExperiences.includes(experienceId)) {
-                            const fields = [
-                                { name: 'Company', value: cells.eq(0).text().trim() },
-                                { name: 'Department', value: cells.eq(1).text().trim() },
-                                { name: 'Years', value: cells.eq(2).text().trim() }
-                            ];
-
-                            $.each(fields, function(i, field) {
-                                $('<input>')
-                                    .attr({
-                                        'type': 'hidden',
-                                        'name': `Experiences[${index}].${field.name}`
-                                    })
-                                    .val(field.value)
-                                    .addClass('dynamicExperienceInput')
-                                    .appendTo('#employeeForm');
-                            });
-
-                            if (experienceId && !experienceId.toString().startsWith("new_")) {
-                                $('<input>')
-                                    .attr({
-                                        'type': 'hidden',
-                                        'name': `Experiences[${index}].ExperienceID`
-                                    })
-                                    .val(experienceId)
-                                    .addClass('dynamicExperienceInput')
-                                    .appendTo('#employeeForm');  
-                            }
-                        }
+                            .appendTo('#employeeForm');
                     });
 
-                            const employeeId = $('#Employee_EmployeeID').val();
-                            const formData = new FormData(this);
-                            const Url = employeeId && parseInt(employeeId) > 0
-                                ? `/Employee/Create/${employeeId}`
-                                : '/Employee/Create';
-                        $.ajax({
-                            type: "POST",
-                            url: Url,
-                            data: formData,
-                            contentType: false,
-                            processData: false,
-                            success: function () {
-                               alertify.success(`Employee ${employeeId ? "Updated" : "Added"}`);
-                                   $('#createEmployeeModal').modal('hide');
-                                       loadEmployees();
-                            },
-                            error: function (xhr) {
-                                console.error("Error:", xhr.responseText);
-                                alertify.error("Something went wrong.");
-                            }
-                        });
-                });
-              
+                    if (experienceId && !experienceId.toString().startsWith("new_")) {
+                        $('<input>')
+                            .attr({
+                                'type': 'hidden',
+                                'name': `Experiences[${index}].ExperienceID`
+                            })
+                            .val(experienceId)
+                            .addClass('dynamicExperienceInput')
+                            .appendTo('#employeeForm');
+                    }
+                }
+            });
+
+            const employeeId = $('#Employee_EmployeeID').val();
+            const formData = new FormData(this);
+            const Url = employeeId && parseInt(employeeId) > 0
+                ? `/Employee/Create/${employeeId}`
+                : '/Employee/Create';
+
+            $.ajax({
+                type: "POST",
+                url: Url,
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function () {
+                    alertify.success(`Employee ${employeeId > 0 ? "Updated" : "Added"}`);
+                    $('#createEmployeeModal').modal('hide');
+                    loadEmployee(() => {
+                        dataGrid.option("dataSource", EmployeeList);
+                        dataGrid.refresh();
+                    });
+                },
+                error: function (xhr) {
+                    console.error("Error:", xhr.responseText);
+                    alertify.error("Something went wrong.");
+                }
+            });
+        });
     }
+
 
 </script> 

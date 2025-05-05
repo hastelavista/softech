@@ -108,7 +108,7 @@ namespace employee.Controllers
         {
             return View();
         }
-        public IActionResult LisNew()
+        public IActionResult ListNew()
         {
             return View();
         }

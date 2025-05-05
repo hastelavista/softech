@@ -5,7 +5,6 @@ function loadEmployee(onSuccess) {
         url: '/Employee/ListEmployees',
         type: 'GET',
         success: function (res) {
-            console.log(res);
             //EmployeeList = res
             //res.forEach(emp => {
             //    emp.experiences.forEach(exp => {
@@ -68,32 +67,31 @@ function datagridinit() {
         dataSource: EmployeeList,
         keyExpr: "employeeID",
 
+        
+         //custom toolbar to add
+         //onToolbarPreparing: function (e) {
+         //    e.toolbarOptions.items.unshift({
+         //        location: "after",
+         //        widget: "dxButton",
+         //        options: {
+         //            icon: "add",
+         //            text: "",
+         //            onClick: function () {
+         //                $.get('/Employee/GetEmployee', function (response)
+         //                {
+         //                    $('#createEmployeeModal .modal-content').html(response);
+         //                    $('#createEmployeeModal').modal('show');
+         //                    initializemodal();
+         //                });
+         //            }
+         //        }
+         //    });
+         //},
+
+         editing: {},
+         form: {},
+
         columnFixing: { enabled: true },
-        //editing: {
-        //    mode: "popup",
-        //    allowAdding: true,
-        //    allowUpdating: false,
-        //    allowDeleting: false,
-        //    useIcons: true
-        // },
-         onToolbarPreparing: function (e) {
-             e.toolbarOptions.items.unshift({
-                 location: "after",
-                 widget: "dxButton",
-                 options: {
-                     icon: "add",
-                     text: "Add New",
-                     onClick: function () {
-                         $.get('/Employee/GetEmployee', function (response) {
-                             $('#createEmployeeModal .modal-content').html(response);
-                             $('#createEmployeeModal').modal('show');
-                             initializemodal();
-                             
-                         });
-                     }
-                 }
-             });
-         },
         columns: [
             {
                 dataField: "name",
@@ -117,43 +115,57 @@ function datagridinit() {
             {
                 type: "buttons",
                 buttons: [
-                    {
-                        hint: "Edit",
-                        icon: "edit",
-                        onClick: function (e) {
-                            const empId = e.row.data.employeeID;
-                            window.location.href = `/Employee/GetEmployee/?id=${empId}`;
-                        }
-                    },
-                    {
-                        hint: "Delete",
-                        icon: "trash",
-                        onClick: function (e) {
-                            const empId = e.row.data.employeeID;
+                        {
+                            hint: "Edit",
+                            icon: "edit",
+                            onClick: function (e){
+                                    const id = e.row.data.employeeID;
 
-                            alertify.confirm("Confirm Deletion", "Are you sure you want to delete this employee?",
-                                function () {
-                                    $.ajax({
-                                        url: `/Employee/Delete/${empId}`,
-                                        type: 'POST',
-                                        //headers: {
-                                        //    'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val() || ''
-                                        //},
-                                        success: function () {
-                                            alertify.success("Employee Deleted");
-                                            //dataGrid.refresh();
-                                            loadEmployee(datagridinit);
-                                        },
-                                        error: function () {
-                                            alertify.error("Delete failed.");
-                                        }
-                                    });
-                                },
-                                function () {
-                                    alertify.message('Canceled');
+                                 
+                                $.ajax({
+                                    url: '/Employee/GetEmployee/' + id,
+                                    type: 'GET',
+                                    success: function (response) {
+
+
+                                        $('#createEmployeeModal .modal-content').html(response);
+                                        $('#createEmployeeModal').modal('show');
+                                        initializemodal();
+
+                                    }
                                 });
+
+                            
+                            }
+                        },
+                        {
+                            hint: "Delete",
+                            icon: "trash",
+                            onClick: function (e) {
+                                const empId = e.row.data.employeeID;
+
+                                alertify.confirm("Confirm Deletion", "Are you sure you want to delete this employee?",
+                                    function () {
+                                        $.ajax({
+                                            url: `/Employee/Delete/${empId}`,
+                                            type: 'POST',
+                                            success: function () {
+                                                alertify.success("Employee Deleted");
+                                               
+                                                loadEmployee(datagridinit);
+                                            },
+                                            error: function () {
+                                                alertify.error("Delete failed.");
+                                            }
+                                        });
+                                    },
+                                    function () {
+                                        alertify.message('Canceled');
+                                    }
+                                );
+                            }
                         }
-                    }
+
 
                 ]
 
