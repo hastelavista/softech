@@ -1,8 +1,10 @@
-﻿using DocumentFormat.OpenXml.Office2010.Excel;
+﻿using DocumentFormat.OpenXml.InkML;
+using DocumentFormat.OpenXml.Office2010.Excel;
 using employee.Data;
 using employee.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace employee.Controllers
 {
@@ -40,9 +42,9 @@ namespace employee.Controllers
                 model.Experiences = new List<Experience>();
             }
 
-            //return Ok(model);
+            return Ok(model);
             //return View(model);
-           return PartialView("Create" ,model);
+           //.return PartialView("Create" ,model);
             //return Json(new
             //{
             //    employee = model.Employee,
@@ -126,6 +128,118 @@ namespace employee.Controllers
             //return View(model);
             return Ok(model);
         }
+
+        [HttpPost]
+        public IActionResult AddEmployee([FromBody] EmployeeFormViewModel model)
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+            if (model == null) return BadRequest("Model is null");
+            if (model.Employee.EmployeeID > 0)
+            {
+                _context.Employees.Update(model.Employee);
+            }
+            else
+            {
+                _context.Employees.Add(model.Employee);
+            }
+
+            _context.SaveChanges();
+
+            if (model.Experiences != null)
+            {
+                foreach (var experience in model.Experiences)
+                {
+                    experience.EmployeeID = model.Employee.EmployeeID;
+                    if (experience.ExperienceID > 0)
+                    {
+                        var existingexp = _context.Experiences.FirstOrDefault(e => e.ExperienceID == experience.ExperienceID);
+                        if (existingexp != null)
+                        {
+                            existingexp.Company = experience.Company;
+                            existingexp.Department = experience.Department;
+                            existingexp.Years = experience.Years;
+
+                        }
+                    }
+                    else
+                    {
+                        _context.Experiences.Add(experience);
+                    }
+                }
+                _context.SaveChanges();
+            }
+            return Ok(model);
+        }
+
+        //[HttpPost]
+        //public IActionResult AddEmployee([FromBody] EmployeeFormViewModel model)
+        //{
+        //    if (!ModelState.IsValid) return BadRequest(ModelState);
+        //    if (model == null) return BadRequest("Model is null");
+
+        //    //var trackedEmployee = _context.ChangeTracker.Entries<Employee>().FirstOrDefault(e => e.Entity.EmployeeID == model.Employee.EmployeeID);
+        //    //if (trackedEmployee != null) trackedEmployee.State = EntityState.Detached;
+
+        //    var localEmployee = _context.ChangeTracker.Entries<Employee>().FirstOrDefault(e => e.Entity.EmployeeID == model.Employee.EmployeeID);
+        //    if (localEmployee != null)
+        //        localEmployee.State = EntityState.Detached;
+
+        //    if (model.Employee.EmployeeID > 0)
+        //    {
+        //        //var existingEmployee = _context.Employees
+        //        //    .AsNoTracking()
+        //        //    .FirstOrDefault(e => e.EmployeeID == model.Employee.EmployeeID);
+
+        //        //if (existingEmployee == null)
+        //        //    return NotFound($"Employee with ID {model.Employee.EmployeeID} not found.");
+
+        //        //_context.Employees.Update(model.Employee);
+        //        _context.Attach(model.Employee).State = EntityState.Modified;
+
+        //    }
+        //    else
+        //    {
+        //        _context.Employees.Add(model.Employee);
+        //    }
+        //    _context.SaveChanges();
+
+
+        //    if (model.Experiences != null)
+        //    {
+        //        foreach (var experience in model.Experiences)
+        //        {
+        //            experience.EmployeeID = model.Employee.EmployeeID;
+
+        //            //var trackedExp = _context.ChangeTracker.Entries<Experience>().FirstOrDefault(e => e.Entity.ExperienceID == experience.ExperienceID);
+        //            //if (trackedExp != null) trackedExp.State = EntityState.Detached;
+
+        //            var localExp = _context.ChangeTracker.Entries<Experience>().FirstOrDefault(e => e.Entity.ExperienceID == experience.ExperienceID);
+
+        //            if (localExp != null)
+        //                localExp.State = EntityState.Detached;
+
+        //            if (experience.ExperienceID > 0)
+        //            {
+        //                // var existingExperience = _context.Experiences
+        //                //    .AsNoTracking()
+        //                //    .FirstOrDefault(e => e.ExperienceID == experience.ExperienceID);
+
+        //                //if (existingExperience != null)
+
+        //                // _context.Experiences.Update(experience);
+        //                _context.Attach(experience).State = EntityState.Modified;
+
+        //            }
+        //            else
+        //            {
+        //                _context.Experiences.Add(experience);
+        //            }
+        //        }
+        //    }
+
+        //    _context.SaveChanges();
+        //    return Ok(model);
+        //}
 
 
         public IActionResult List()

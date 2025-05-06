@@ -1,9 +1,6 @@
 ﻿var EmployeeList = [];
 var dataGrid;
 
-$(() => {
- loadEmployee(datagridinit);
-});
 
 function loadEmployee(onSuccess) {
     $.ajax({
@@ -72,25 +69,33 @@ function datagridinit() {
                         {
                             hint: "Edit",
                             icon: "edit",
-                            onClick: function (e){
-                                    const id = e.row.data.employeeID;
+                        onClick: function (e) {
+                            const id = e.row.data.employeeID;
+
+                            $("#employeePopup").dxPopup({
+                                title: "Edit Employee",
+                                visible: true,
+                                width: 700,
+                                height: "auto",
+                                showTitle: true,
+                                dragEnabled: true,
+                                closeOnOutsideClick: false,
+                                contentTemplate: function (contentElement) {
+                                    renderForm(contentElement); 
 
                                  
-                                $.ajax({
-                                    url: '/Employee/GetEmployee/' + id,
-                                    type: 'GET',
-                                    success: function (response) {
+                                        $.ajax({
+                                            url: '/Employee/GetEmployee/' + id,
+                                            type: 'GET',
+                                            success: function (response) {
+                                                loadEmployeeForm(response); 
+                                            }
+                                        });
+                                   
+                                }
+                            }).dxPopup("instance");
+                        }
 
-
-                                        $('#createEmployeeModal .modal-content').html(response);
-                                        $('#createEmployeeModal').modal('show');
-                                        initializemodal();
-
-                                    }
-                                });
-
-                            
-                            }
                         },
                         {
                             hint: "Delete",
@@ -144,9 +149,21 @@ function datagridinit() {
                      text: "",
                      type: "default",
                      onClick: function () {
-                         console.log("Add button clicked");
+                             experienceList = [];
+                             experienceCounter = 1;
 
-                         openEmployeeForm();
+                             $("#employeePopup").dxPopup({
+                                 title: "Add Employee",
+                                 visible: true,
+                                 width: 700,
+                                 height: "auto",
+                                 showTitle: true,
+                                 dragEnabled: true,
+                                 closeOnOutsideClick: false,
+                                 contentTemplate: function (contentElement) {
+                                     renderForm(contentElement);
+                                 }
+                             }).dxPopup("instance");
                      }
                  }
              });
@@ -157,6 +174,10 @@ function datagridinit() {
 
 }
 
+//$(() => {
+//    loadEmployee(datagridinit);
+//});
+loadEmployee(datagridinit);
 
 
 

@@ -12,8 +12,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>sz8ke4bm5c</Fingerprint>
-      <Integrity>iPij8HaHugsVdNUg81ymAAf96vf+tdcvGELz3sRKYis=</Integrity>
+      <Fingerprint>uds8xdjen7</Fingerprint>
+      <Integrity>sgZnVZfDE5tukfrw3cDcxAlKsTmKwh4spLkB25P/WFM=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\app\Empform.js'))</OriginalItemSpec>
@@ -30,8 +30,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>irntpq7log</Fingerprint>
-      <Integrity>ctGIghqfqlT4pCDh0NgowN7wUF5W87OTSNAK1ioy62c=</Integrity>
+      <Fingerprint>k1pmruiqg6</Fingerprint>
+      <Integrity>uAQz0ZVZe4ma4YCxvOUtJH89g7MBtmam/HorUP6a1OA=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\app\Emplist.js'))</OriginalItemSpec>
